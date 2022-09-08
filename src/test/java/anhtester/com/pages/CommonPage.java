@@ -10,10 +10,10 @@ public class CommonPage {
     }
 
     //Class chung
-    private LoginPage loginPage;
-    private DashboardPage dashboardPage;
-    private ProjectPage projectPage;
-    private TaskPage taskPage;
+    public LoginPage loginPage;
+    public DashboardPage dashboardPage;
+    public ProjectPage projectPage;
+    public TaskPage taskPage;
 
     //Object chung
     public By headerPage = By.xpath("//li[@class='nav-item active']/a");

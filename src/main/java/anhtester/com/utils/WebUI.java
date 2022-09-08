@@ -1,7 +1,6 @@
 package anhtester.com.utils;
 
 import anhtester.com.driver.DriverManager;
-import anhtester.com.helpers.PropertiesHelper;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
@@ -18,9 +17,9 @@ import java.util.List;
 
 public class WebUI {
 
-    private final static int TIMEOUT = Integer.parseInt(PropertiesHelper.getValue("TIMEOUT"));
-    private final static double STEP_TIME = Integer.parseInt(PropertiesHelper.getValue("STEP_TIME"));
-    private final static int PAGE_LOAD_TIMEOUT = Integer.parseInt(PropertiesHelper.getValue("PAGE_LOAD_TIMEOUT"));
+    private final static int TIMEOUT = 10;
+    private final static double STEP_TIME = 0;
+    private final static int PAGE_LOAD_TIMEOUT = 20;
 
     public static void sleep(double second) {
         try {

@@ -49,7 +49,6 @@ public class LoginPage extends CommonPage {
         WebUI.setText(inputUsername, username);
         WebUI.setText(inputPassword, password);
         WebUI.clickElement(buttonSignin);
-
         //Xử lý Assert
         boolean checkAlertError = WebUI.checkElementExist(alertMessage);
         Assert.assertTrue(checkAlertError, "Fail. Error alert not display.");
@@ -63,7 +62,6 @@ public class LoginPage extends CommonPage {
         WebUI.clickElement(buttonSignin);
         //Xử lý Assert
         boolean checkAlertError = WebUI.checkElementExist(alertMessage);
-
         Assert.assertTrue(checkAlertError, "Fail. Error alert not display.");
         WebUI.verifyEquals(WebUI.getElementText(alertMessage), "Invalid Login Credentials.");
 
@@ -72,15 +70,11 @@ public class LoginPage extends CommonPage {
     public void resetPassword(String emailForgot) {
         WebUI.openURL("https://hrm.anhtester.com/");
         WebUI.clickElement(linkForgotPassword);
-
         WebUI.verifyEquals(WebUI.getElementText(pageTextForgotPassword), "Reset your password");
-
         WebUI.setText(inputEmailForgotPassword, emailForgot);
         WebUI.clickElement(buttonReset);
-
         //Assert cái message hiển thị thành công (tồn tại)
         WebUI.verifyEquals(WebUI.getElementText(alertMessage), "Main.xin_error_msg__available");
-
         WebUI.clickElement(linkClickHere);
     }
 

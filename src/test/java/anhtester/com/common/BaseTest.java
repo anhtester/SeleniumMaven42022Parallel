@@ -2,6 +2,7 @@ package anhtester.com.common;
 
 import anhtester.com.driver.DriverManager;
 import anhtester.com.helpers.PropertiesHelper;
+import anhtester.com.pages.CommonPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -12,7 +13,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 
-public class BaseTest {
+public class BaseTest extends CommonPage {
 
     //Luôn chạy trước trong 1 class
     public BaseTest() {

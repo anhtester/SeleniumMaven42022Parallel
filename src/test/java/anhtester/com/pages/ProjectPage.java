@@ -16,9 +16,7 @@ public class ProjectPage extends CommonPage {
     By inputTieuDe = By.xpath("//input[@placeholder='Tiêu đề']");
     By dropdownKhachHang = By.xpath("//span[@id='select2-client_id-container']");
     By inputKhachHang = By.xpath("//span[@class='select2-search select2-search--dropdown']//input[@role='searchbox']");
-
     By inputNote = By.id("summary");
-
     By buttonLuu = By.xpath("//span[contains(text(),'Lưu')]");
 
 
@@ -31,23 +29,14 @@ public class ProjectPage extends CommonPage {
         WebUI.clickElement(dropdownKhachHang);
         WebUI.setText(inputKhachHang, "Huong Nguyen");
         DriverManager.getDriver().findElement(inputKhachHang).sendKeys(Keys.ENTER);
-
         WebUI.sleep(1);
-
         DriverManager.getDriver().findElement(By.xpath("//label[contains(text(),'Ngày bắt đầu')]/following-sibling::div")).click();
-
         DriverManager.getDriver().findElement(By.xpath("//a[normalize-space()='21']")).click();
-
         DriverManager.getDriver().findElement(By.xpath("(//button[normalize-space()='OK'])[1]")).click();
-
         WebUI.sleep(1);
-
         DriverManager.getDriver().findElement(By.xpath("//label[contains(text(),'Ngày kết thúc')]/following-sibling::div")).click();
-
         DriverManager.getDriver().findElement(By.xpath("(//a[normalize-space()='25'])[2]")).click();
-
         DriverManager.getDriver().findElement(By.xpath("(//button[normalize-space()='OK'])[2]")).click();
-
         WebUI.setText(inputNote, "Note");
 
     }

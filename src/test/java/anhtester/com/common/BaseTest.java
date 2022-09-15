@@ -1,7 +1,7 @@
 package anhtester.com.common;
 
 import anhtester.com.driver.DriverManager;
-import anhtester.com.helpers.PropertiesHelper;
+import anhtester.com.helpers.PropertiesHelpers;
 import anhtester.com.pages.CommonPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
@@ -17,7 +17,7 @@ public class BaseTest extends CommonPage {
 
     //Luôn chạy trước trong 1 class
     public BaseTest() {
-        PropertiesHelper.loadAllFiles();
+        PropertiesHelpers.loadAllFiles();
     }
 
     @BeforeMethod

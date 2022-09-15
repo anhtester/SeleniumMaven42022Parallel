@@ -9,11 +9,12 @@ public class CommonPage {
     public CommonPage() {
     }
 
-    //Class chung
+    //Khai báo đối tượng cho Class chung
     public LoginPage loginPage;
     public DashboardPage dashboardPage;
     public ProjectPage projectPage;
     public TaskPage taskPage;
+    public LoginHRMPage loginHRMPage;
 
     //Object chung
     public By headerPage = By.xpath("//li[@class='nav-item active']/a");
@@ -48,6 +49,8 @@ public class CommonPage {
         return new TaskPage();
     }
 
+    //Khởi tạo giá trị cho tất cả các đối tượng class ở trên
+
     public LoginPage getLoginPage() {
         if (loginPage == null) {
             loginPage = new LoginPage();
@@ -74,6 +77,13 @@ public class CommonPage {
             taskPage = new TaskPage();
         }
         return taskPage;
+    }
+
+    public LoginHRMPage getLoginHRMPage() {
+        if (loginHRMPage == null) {
+            loginHRMPage = new LoginHRMPage();
+        }
+        return loginHRMPage;
     }
 
 }

@@ -1,0 +1,12 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Suite Parallel Login Test" verbose="1">
+
+    <test name="Regression on EDGE" parallel="methods">
+        <parameter name="browser" value="edge"></parameter>
+        <classes>
+            <class name="anhtester.com.testcases.LoginHRMTest"/>
+        </classes>
+    </test>
+
+</suite>

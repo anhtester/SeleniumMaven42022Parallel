@@ -1,7 +1,8 @@
 package anhtester.com.testcases;
 
 import anhtester.com.common.BaseTest;
-import anhtester.com.helpers.PropertiesHelper;
+import anhtester.com.helpers.ExcelHelpers;
+import anhtester.com.helpers.PropertiesHelpers;
 import anhtester.com.pages.CommonPage;
 import anhtester.com.pages.LoginPage;
 import org.testng.annotations.BeforeMethod;
@@ -20,8 +21,36 @@ public class LoginTest extends BaseTest {
 
     @Test(priority = 1)
     public void testLoginSuccess() {
-        loginPage.logIn(PropertiesHelper.getValue("username"), PropertiesHelper.getValue("password"));
+        loginPage.logIn(PropertiesHelpers.getValue("username"), PropertiesHelpers.getValue("password"));
         commonPage.dangXuat();
+    }
+
+    @Test(priority = 5)
+    public void testLoginSuccessEXCEL() {
+        ExcelHelpers excelHelpers = new ExcelHelpers();
+        excelHelpers.setExcelFile("datatest/Login.xlsx", "Sheet1"); //Khai báo file và sheet
+        loginPage.logIn(excelHelpers.getCellData("username", 1), excelHelpers.getCellData("password", 1));
+
+    }
+
+    @Test(priority = 5)
+    public void testGetAllDataEXCEL() {
+        ExcelHelpers excelHelpers = new ExcelHelpers();
+        excelHelpers.setExcelFile("datatest/Login.xlsx", "Sheet1"); //Khai báo file và sheet
+
+        System.out.println(excelHelpers.getLastRowNum());
+        System.out.println(excelHelpers.getPhysicalNumberOfRows());
+
+        for (int i = 1; i <= excelHelpers.getLastRowNum(); i++) {
+            System.out.println(excelHelpers.getCellData("username", i));
+            System.out.println(excelHelpers.getCellData("password", i));
+            System.out.println(excelHelpers.getCellData("result", i));
+        }
+
+        excelHelpers.setCellData("passed", 2, "result");
+        excelHelpers.setCellData("success", 3, "result");
+        excelHelpers.setCellData("failed", 4, "result");
+
     }
 
     @Test(priority = 2)
@@ -33,7 +62,7 @@ public class LoginTest extends BaseTest {
     @Test(priority = 3)
     public void testLoginWithPasswordInValid() {
         loginPage.loginWithPasswordInValid("admin01", "123456789");
-        
+
     }
 
     @Test(priority = 4)

@@ -1,14 +1,11 @@
 package anhtester.com.pages;
 
-import anhtester.com.helpers.PropertiesHelper;
+import anhtester.com.helpers.PropertiesHelpers;
 import anhtester.com.utils.WebUI;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 
 public class LoginPage extends CommonPage {
-
-    private WebDriver driver;
 
     //Hàm xây dựng
     public LoginPage() {
@@ -30,7 +27,7 @@ public class LoginPage extends CommonPage {
 
 
     public DashboardPage logIn(String username, String password) {
-        WebUI.openURL(PropertiesHelper.getValue("url"));
+        WebUI.openURL(PropertiesHelpers.getValue("url"));
         WebUI.setText(inputUsername, username);
         WebUI.setText(inputPassword, password);
         WebUI.clickElement(buttonSignin);
@@ -45,7 +42,7 @@ public class LoginPage extends CommonPage {
     }
 
     public void loginWithUsernameInValid(String username, String password) {
-        WebUI.openURL("https://hrm.anhtester.com/");
+        WebUI.openURL("https://app.hrsale.com/erp/login");
         WebUI.setText(inputUsername, username);
         WebUI.setText(inputPassword, password);
         WebUI.clickElement(buttonSignin);
@@ -56,7 +53,7 @@ public class LoginPage extends CommonPage {
     }
 
     public void loginWithPasswordInValid(String username, String password) {
-        WebUI.openURL("https://hrm.anhtester.com/");
+        WebUI.openURL("https://app.hrsale.com/erp/login");
         WebUI.setText(inputUsername, username);
         WebUI.setText(inputPassword, password);
         WebUI.clickElement(buttonSignin);
@@ -68,7 +65,7 @@ public class LoginPage extends CommonPage {
     }
 
     public void resetPassword(String emailForgot) {
-        WebUI.openURL("https://hrm.anhtester.com/");
+        WebUI.openURL("https://app.hrsale.com/erp/login");
         WebUI.clickElement(linkForgotPassword);
         WebUI.verifyEquals(WebUI.getElementText(pageTextForgotPassword), "Reset your password");
         WebUI.setText(inputEmailForgotPassword, emailForgot);

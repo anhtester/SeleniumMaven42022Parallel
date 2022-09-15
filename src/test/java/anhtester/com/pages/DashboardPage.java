@@ -7,6 +7,6 @@ public class DashboardPage extends CommonPage {
     public DashboardPage() {
     }
 
-    public By menuTrangChu = By.xpath("//a[normalize-space()='Trang chủ']");
+    public By menuTrangChu = By.xpath("//a[normalize-space()='Home']");
 
 }

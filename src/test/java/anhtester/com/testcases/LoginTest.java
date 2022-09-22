@@ -1,12 +1,14 @@
 package anhtester.com.testcases;
 
 import anhtester.com.common.BaseTest;
+import anhtester.com.dataprovider.DataProviderManager;
 import anhtester.com.helpers.ExcelHelpers;
-import anhtester.com.helpers.PropertiesHelpers;
 import anhtester.com.pages.CommonPage;
 import anhtester.com.pages.LoginPage;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+
+import java.util.Hashtable;
 
 public class LoginTest extends BaseTest {
 
@@ -19,13 +21,31 @@ public class LoginTest extends BaseTest {
         commonPage = new CommonPage();
     }
 
-    @Test(priority = 1)
-    public void testLoginSuccess() {
-        loginPage.logIn(PropertiesHelpers.getValue("username"), PropertiesHelpers.getValue("password"));
+    @Test(priority = 1, dataProvider = "data_provider_login", dataProviderClass = DataProviderManager.class)
+    public void testLoginFromDataProvider(String username, String password) {
+        loginPage.logIn(username, password);
         commonPage.dangXuat();
     }
 
-    @Test(priority = 5)
+    @Test(priority = 1, dataProvider = "data_provider_login_from_excel", dataProviderClass = DataProviderManager.class)
+    public void testLoginDataProviderFromExcel(String username, String password, String result) {
+        loginPage.logIn(username, password);
+        commonPage.dangXuat();
+    }
+
+    @Test(priority = 1, dataProvider = "data_provider_login_from_excel_by_row", dataProviderClass = DataProviderManager.class)
+    public void testLoginDataProviderFromExcelByRow(Hashtable<String, String> data) {
+        loginPage.logIn(data.get("username"), data.get("password"));
+        commonPage.dangXuat();
+    }
+
+//    @Test(priority = 1)
+//    public void testLoginSuccess() {
+//        loginPage.logIn(PropertiesHelpers.getValue("username"), PropertiesHelpers.getValue("password"));
+//        commonPage.dangXuat();
+//    }
+
+    @Test(priority = 2)
     public void testLoginSuccessEXCEL() {
         ExcelHelpers excelHelpers = new ExcelHelpers();
         excelHelpers.setExcelFile("datatest/Login.xlsx", "Sheet1"); //Khai báo file và sheet
@@ -33,7 +53,7 @@ public class LoginTest extends BaseTest {
 
     }
 
-    @Test(priority = 5)
+    @Test(priority = 3)
     public void testGetAllDataEXCEL() {
         ExcelHelpers excelHelpers = new ExcelHelpers();
         excelHelpers.setExcelFile("datatest/Login.xlsx", "Sheet1"); //Khai báo file và sheet
@@ -53,22 +73,22 @@ public class LoginTest extends BaseTest {
 
     }
 
-    @Test(priority = 2)
-    public void testLoginWithUsernameInValid() {
-        loginPage.loginWithUsernameInValid("admin0123", "123456");
-
-    }
-
-    @Test(priority = 3)
-    public void testLoginWithPasswordInValid() {
-        loginPage.loginWithPasswordInValid("admin01", "123456789");
-
-    }
-
-    @Test(priority = 4)
-    public void testForgotPassword() {
-        loginPage.resetPassword("client01@mailinator.com");
-
-    }
+//    @Test(priority = 2)
+//    public void testLoginWithUsernameInValid() {
+//        loginPage.loginWithUsernameInValid("admin0123", "123456");
+//
+//    }
+//
+//    @Test(priority = 3)
+//    public void testLoginWithPasswordInValid() {
+//        loginPage.loginWithPasswordInValid("admin01", "123456789");
+//
+//    }
+//
+//    @Test(priority = 4)
+//    public void testForgotPassword() {
+//        loginPage.resetPassword("client01@mailinator.com");
+//
+//    }
 
 }

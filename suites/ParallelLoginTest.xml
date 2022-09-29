@@ -2,10 +2,11 @@
 
 <suite name="Suite Parallel Login Test" verbose="1">
 
-    <test name="Regression on CHROME" parallel="methods">
+    <test name="Regression on CHROME">
         <parameter name="browser" value="chrome"></parameter>
         <classes>
-            <class name="anhtester.com.testcases.LoginTest"/>
+            <!--            <class name="anhtester.com.testcases.LoginTest"/>-->
+            <class name="anhtester.com.testcases.LearnScreenshot"/>
         </classes>
     </test>
 

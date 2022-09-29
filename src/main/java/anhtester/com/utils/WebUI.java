@@ -321,8 +321,7 @@ public class WebUI {
         JavascriptExecutor js = (JavascriptExecutor) DriverManager.getDriver();
 
         // wait for Javascript to loaded
-        ExpectedCondition<Boolean> jsLoad = driver -> ((JavascriptExecutor) DriverManager.getDriver()).executeScript("return document.readyState")
-                .toString().equals("complete");
+        ExpectedCondition<Boolean> jsLoad = driver -> ((JavascriptExecutor) DriverManager.getDriver()).executeScript("return document.readyState").toString().equals("complete");
 
         //Get JS is Ready
         boolean jsReady = js.executeScript("return document.readyState").toString().equals("complete");
@@ -350,8 +349,7 @@ public class WebUI {
         //Wait for jQuery to load
         ExpectedCondition<Boolean> jQueryLoad = driver -> {
             assert driver != null;
-            return ((Long) ((JavascriptExecutor) DriverManager.getDriver())
-                    .executeScript("return jQuery.active") == 0);
+            return ((Long) ((JavascriptExecutor) DriverManager.getDriver()).executeScript("return jQuery.active") == 0);
         };
 
         //Get JQuery is Ready
@@ -382,8 +380,7 @@ public class WebUI {
         //Wait for ANGULAR to load
         ExpectedCondition<Boolean> angularLoad = driver -> {
             assert driver != null;
-            return Boolean.valueOf(((JavascriptExecutor) DriverManager.getDriver())
-                    .executeScript(angularReadyScript).toString());
+            return Boolean.valueOf(((JavascriptExecutor) DriverManager.getDriver()).executeScript(angularReadyScript).toString());
         };
 
         //Get Angular is Ready

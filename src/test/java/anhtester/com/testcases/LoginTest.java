@@ -27,11 +27,11 @@ public class LoginTest extends BaseTest {
         commonPage.dangXuat();
     }
 
-    @Test(priority = 1, dataProvider = "data_provider_login_from_excel", dataProviderClass = DataProviderManager.class)
-    public void testLoginDataProviderFromExcel(String username, String password, String result) {
-        loginPage.logIn(username, password);
-        commonPage.dangXuat();
-    }
+//    @Test(priority = 1, dataProvider = "data_provider_login_from_excel", dataProviderClass = DataProviderManager.class)
+//    public void testLoginDataProviderFromExcel(String username, String password, String result) {
+//        loginPage.logIn(username, password);
+//        commonPage.dangXuat();
+//    }
 
     @Test(priority = 1, dataProvider = "data_provider_login_from_excel_by_row", dataProviderClass = DataProviderManager.class)
     public void testLoginDataProviderFromExcelByRow(Hashtable<String, String> data) {
@@ -73,22 +73,22 @@ public class LoginTest extends BaseTest {
 
     }
 
-//    @Test(priority = 2)
-//    public void testLoginWithUsernameInValid() {
-//        loginPage.loginWithUsernameInValid("admin0123", "123456");
-//
-//    }
-//
-//    @Test(priority = 3)
-//    public void testLoginWithPasswordInValid() {
-//        loginPage.loginWithPasswordInValid("admin01", "123456789");
-//
-//    }
-//
-//    @Test(priority = 4)
-//    public void testForgotPassword() {
-//        loginPage.resetPassword("client01@mailinator.com");
-//
-//    }
+    @Test(priority = 2)
+    public void testLoginWithUsernameInValid() {
+        loginPage.loginWithUsernameInValid("admin0123", "123456");
+
+    }
+    
+    @Test(priority = 3)
+    public void testLoginWithPasswordInValid() {
+        loginPage.loginWithPasswordInValid("admin01", "123456789");
+
+    }
+
+    @Test(priority = 4)
+    public void testForgotPassword() {
+        loginPage.resetPassword("client01@mailinator.com");
+
+    }
 
 }

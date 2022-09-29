@@ -1,0 +1,15 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Suite Parallel Login Test" verbose="1">
+
+    <!--    <listeners>-->
+    <!--        <listener class-name="anhtester.com.listeners.TestListener"></listener>-->
+    <!--    </listeners>-->
+
+    <test name="Regression on CHROME">
+        <classes>
+            <class name="anhtester.com.testcases.LearnTestListener"/>
+        </classes>
+    </test>
+
+</suite>

@@ -21,9 +21,9 @@ public class ProjectTest extends BaseTest {
 
     @Test
     public void testAddProject() {
-        dashboardPage = loginPage.logIn("admin01", "123456");
+        dashboardPage = loginPage.logIn("frances.burns", "frances.burns");
         projectPage = dashboardPage.openProject();
-        projectPage.addProject("PD0609A1");
+        projectPage.addProject("PD0110A1");
     }
 
     @Test

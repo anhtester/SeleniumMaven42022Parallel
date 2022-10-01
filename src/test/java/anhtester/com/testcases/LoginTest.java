@@ -5,6 +5,7 @@ import anhtester.com.dataprovider.DataProviderManager;
 import anhtester.com.helpers.ExcelHelpers;
 import anhtester.com.pages.CommonPage;
 import anhtester.com.pages.LoginPage;
+import anhtester.com.utils.Log;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -24,7 +25,9 @@ public class LoginTest extends BaseTest {
     @Test(priority = 1, dataProvider = "data_provider_login", dataProviderClass = DataProviderManager.class)
     public void testLoginFromDataProvider(String username, String password) {
         loginPage.logIn(username, password);
-        commonPage.dangXuat();
+        Log.info(username + " - " + password);
+
+        //commonPage.dangXuat();
     }
 
 //    @Test(priority = 1, dataProvider = "data_provider_login_from_excel", dataProviderClass = DataProviderManager.class)
@@ -36,7 +39,7 @@ public class LoginTest extends BaseTest {
     @Test(priority = 1, dataProvider = "data_provider_login_from_excel_by_row", dataProviderClass = DataProviderManager.class)
     public void testLoginDataProviderFromExcelByRow(Hashtable<String, String> data) {
         loginPage.logIn(data.get("username"), data.get("password"));
-        commonPage.dangXuat();
+        //commonPage.dangXuat();
     }
 
 //    @Test(priority = 1)
@@ -78,7 +81,7 @@ public class LoginTest extends BaseTest {
         loginPage.loginWithUsernameInValid("admin0123", "123456");
 
     }
-    
+
     @Test(priority = 3)
     public void testLoginWithPasswordInValid() {
         loginPage.loginWithPasswordInValid("admin01", "123456789");

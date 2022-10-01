@@ -44,14 +44,14 @@ public class WebUI {
     public static void verifyEquals(Object actual, Object expected) {
         waitForPageLoaded();
         sleep(STEP_TIME);
-        logConsole("Verify equals: " + actual + " and " + expected);
+        Log.info("Verify equals: " + actual + " and " + expected);
         Assert.assertEquals(actual, expected, "Fail. Not match. '" + actual.toString() + "' != '" + expected.toString() + "'");
     }
 
     public static void verifyEquals(Object actual, Object expected, String message) {
         waitForPageLoaded();
         sleep(STEP_TIME);
-        logConsole("Verify equals: " + actual + " and " + expected);
+        Log.info("Verify equals: " + actual + " and " + expected);
         Assert.assertEquals(actual, expected, message);
     }
 
@@ -73,7 +73,7 @@ public class WebUI {
     public static void openURL(String url) {
         DriverManager.getDriver().get(url);
         sleep(STEP_TIME);
-        logConsole("Open: " + url);
+        Log.info("Open: " + url);
         waitForPageLoaded();
     }
 
@@ -82,7 +82,7 @@ public class WebUI {
         waitForElementVisible(by);
         sleep(STEP_TIME);
         getWebElement(by).click();
-        logConsole("Click element: " + by);
+        Log.info("Click element: " + by);
     }
 
     public static void clickElement(By by, long timeout) {
@@ -90,7 +90,7 @@ public class WebUI {
         waitForElementVisible(by);
         sleep(STEP_TIME);
         getWebElement(by).click();
-        logConsole("Click element: " + by);
+        Log.info("Click element: " + by);
     }
 
     public static void setText(By by, String value) {
@@ -98,7 +98,7 @@ public class WebUI {
         waitForElementVisible(by);
         sleep(STEP_TIME);
         getWebElement(by).sendKeys(value);
-        logConsole("Set text: " + value + " on element " + by);
+        Log.info("Set text: " + value + " on element " + by);
     }
 
     public static String getElementText(By by) {
@@ -106,7 +106,7 @@ public class WebUI {
         waitForElementVisible(by);
         sleep(STEP_TIME);
         String text = getWebElement(by).getText();
-        logConsole("Get text: " + text);
+        Log.info("Get text: " + text);
         return text; //Trả về một giá trị kiểu String
     }
 
@@ -117,8 +117,8 @@ public class WebUI {
             WebDriverWait wait = new WebDriverWait(DriverManager.getDriver(), Duration.ofSeconds(TIMEOUT), Duration.ofMillis(500));
             wait.until(ExpectedConditions.visibilityOfElementLocated(by));
         } catch (Throwable error) {
+            Log.error("Timeout waiting for the element Visible. " + by.toString());
             Assert.fail("Timeout waiting for the element Visible. " + by.toString());
-            logConsole("Timeout waiting for the element Visible. " + by.toString());
         }
     }
 
@@ -127,8 +127,8 @@ public class WebUI {
             WebDriverWait wait = new WebDriverWait(DriverManager.getDriver(), Duration.ofSeconds(timeOut), Duration.ofMillis(500));
             wait.until(ExpectedConditions.visibilityOfElementLocated(by));
         } catch (Throwable error) {
+            Log.error("Timeout waiting for the element Visible. " + by.toString());
             Assert.fail("Timeout waiting for the element Visible. " + by.toString());
-            logConsole("Timeout waiting for the element Visible. " + by.toString());
         }
     }
 
@@ -137,8 +137,8 @@ public class WebUI {
             WebDriverWait wait = new WebDriverWait(DriverManager.getDriver(), Duration.ofSeconds(TIMEOUT), Duration.ofMillis(500));
             wait.until(ExpectedConditions.presenceOfElementLocated(by));
         } catch (Throwable error) {
+            Log.error("Element not exist. " + by.toString());
             Assert.fail("Element not exist. " + by.toString());
-            logConsole("Element not exist. " + by.toString());
         }
     }
 
@@ -147,8 +147,9 @@ public class WebUI {
             WebDriverWait wait = new WebDriverWait(DriverManager.getDriver(), Duration.ofSeconds(timeOut), Duration.ofMillis(500));
             wait.until(ExpectedConditions.presenceOfElementLocated(by));
         } catch (Throwable error) {
+            Log.error("Element not exist. " + by.toString());
             Assert.fail("Element not exist. " + by.toString());
-            logConsole("Element not exist. " + by.toString());
+
         }
     }
 
@@ -158,7 +159,7 @@ public class WebUI {
             wait.until(ExpectedConditions.elementToBeClickable(getWebElement(by)));
         } catch (Throwable error) {
             Assert.fail("Timeout waiting for the element ready to click. " + by.toString());
-            logConsole("Timeout waiting for the element ready to click. " + by.toString());
+            Log.info("Timeout waiting for the element ready to click. " + by.toString());
         }
     }
 
@@ -168,7 +169,7 @@ public class WebUI {
             wait.until(ExpectedConditions.elementToBeClickable(getWebElement(by)));
         } catch (Throwable error) {
             Assert.fail("Timeout waiting for the element ready to click. " + by.toString());
-            logConsole("Timeout waiting for the element ready to click. " + by.toString());
+            Log.info("Timeout waiting for the element ready to click. " + by.toString());
         }
     }
 
@@ -195,7 +196,7 @@ public class WebUI {
             action.moveToElement(getWebElement(toElement)).release(getWebElement(toElement)).build().perform();
             return true;
         } catch (Exception e) {
-            logConsole(e.getMessage());
+            Log.info(e.getMessage());
             return false;
         }
     }
@@ -206,7 +207,7 @@ public class WebUI {
             action.moveByOffset(X, Y).build().perform();
             return true;
         } catch (Exception e) {
-            logConsole(e.getMessage());
+            Log.info(e.getMessage());
             return false;
         }
     }
@@ -238,7 +239,7 @@ public class WebUI {
             //action.clickAndHold(getWebElement(fromElement)).moveToElement(getWebElement(toElement)).release(getWebElement(toElement)).build().perform();
             return true;
         } catch (Exception e) {
-            logConsole(e.getMessage());
+            Log.info(e.getMessage());
             return false;
         }
     }
@@ -249,7 +250,7 @@ public class WebUI {
             action.clickAndHold(getWebElement(fromElement)).moveToElement(getWebElement(toElement)).release(getWebElement(toElement)).build().perform();
             return true;
         } catch (Exception e) {
-            logConsole(e.getMessage());
+            Log.info(e.getMessage());
             return false;
         }
     }
@@ -261,7 +262,7 @@ public class WebUI {
             action.clickAndHold(getWebElement(fromElement)).pause(1).moveByOffset(X, Y).release().build().perform();
             return true;
         } catch (Exception e) {
-            logConsole(e.getMessage());
+            Log.info(e.getMessage());
             return false;
         }
     }
@@ -328,7 +329,7 @@ public class WebUI {
 
         //Wait Javascript until it is Ready!
         if (!jsReady) {
-            logConsole("Javascript in NOT Ready!");
+            Log.info("Javascript in NOT Ready!");
             //Wait for Javascript to load
             try {
                 wait.until(jsLoad);
@@ -357,7 +358,7 @@ public class WebUI {
 
         //Wait JQuery until it is Ready!
         if (!jqueryReady) {
-            logConsole("JQuery is NOT Ready!");
+            Log.info("JQuery is NOT Ready!");
             try {
                 //Wait for jQuery to load
                 wait.until(jQueryLoad);
@@ -388,7 +389,7 @@ public class WebUI {
 
         //Wait ANGULAR until it is Ready!
         if (!angularReady) {
-            logConsole("Angular is NOT Ready!");
+            Log.info("Angular is NOT Ready!");
             //Wait for Angular to load
             try {
                 //Wait for jQuery to load

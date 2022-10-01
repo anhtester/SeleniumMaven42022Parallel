@@ -10,7 +10,12 @@ buildNumber.properties
 .mvn/timing.properties
 # https://github.com/takari/maven-wrapper#usage-without-binary-jar
 .mvn/wrapper/maven-wrapper.jar
-.png
-.jpg
-.jpeg
-Screenshots
+*.png
+*.jpg
+*.jpeg
+screenshots
+VideoRecord
+*.avi
+*.mp4
+*.mov
+*.log

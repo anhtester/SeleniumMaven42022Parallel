@@ -48,8 +48,8 @@ public class LoginPage extends CommonPage {
         WebUI.clickElement(buttonSignin);
         //Xử lý Assert
         boolean checkAlertError = WebUI.checkElementExist(alertMessage);
-        Assert.assertTrue(checkAlertError, "Fail. Error alert not display.");
-        WebUI.verifyEquals(WebUI.getElementText(alertMessage), "Invalid Login Credentials.");
+        //Assert.assertTrue(checkAlertError, "Fail. Error alert not display.");
+        WebUI.verifyEquals(WebUI.getElementText(alertMessage), "Invalid Login Credentials. 123");
     }
 
     public void loginWithPasswordInValid(String username, String password) {

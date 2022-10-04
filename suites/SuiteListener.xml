@@ -8,7 +8,13 @@
 
     <test name="Regression on CHROME">
         <classes>
-            <class name="anhtester.com.testcases.LearnTestListener"/>
+            <class name="anhtester.com.testcases.LoginTest">
+                <methods>
+                    <include name="testLoginFromDataProvider"/>
+                    <include name="testLoginWithUsernameInValid"/>
+                    <include name="testForgotPassword"/>
+                </methods>
+            </class>
         </classes>
     </test>
 

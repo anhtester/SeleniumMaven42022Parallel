@@ -9,8 +9,6 @@
             <class name="anhtester.com.testcases.LoginTest">
                 <methods>
                     <include name="testLoginWithUsernameInValid"/>
-                    <!--                    <include name="testLoginDataProviderFromExcelByRow"/>-->
-                    <!--                    <include name="testLoginWithUsernameInValid"/>-->
                 </methods>
             </class>
         </classes>

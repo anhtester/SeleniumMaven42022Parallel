@@ -3,6 +3,8 @@ package anhtester.com.utils;
 import anhtester.com.driver.DriverManager;
 import anhtester.com.reports.ExtentTestManager;
 import com.aventstack.extentreports.Status;
+import io.qameta.allure.Attachment;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
@@ -74,14 +76,25 @@ public class WebUI {
         }
     }
 
+    //Text attachments for Allure
+    @Attachment(value = "{0}", type = "text/plain")
+    public static String saveTextLog(String message) {
+        return message;
+    }
+
+    @Step("Open URL: {0}")
     public static void openURL(String url) {
         DriverManager.getDriver().get(url);
         sleep(STEP_TIME);
         Log.info("Open: " + url);
         ExtentTestManager.logMessage(Status.PASS, "Open URL: " + url);
+
+        saveTextLog("Open: " + url);
+
         waitForPageLoaded();
     }
 
+    @Step("Click element: {0}")
     public static void clickElement(By by) {
         waitForPageLoaded();
         waitForElementVisible(by);
@@ -89,6 +102,7 @@ public class WebUI {
         getWebElement(by).click();
         Log.info("Click element: " + by);
         ExtentTestManager.logMessage(Status.PASS, "Click element: " + by);
+        saveTextLog("Click element: " + by);
     }
 
     public static void clickElement(By by, long timeout) {
@@ -100,6 +114,7 @@ public class WebUI {
         ExtentTestManager.logMessage(Status.PASS, "Click element: " + by);
     }
 
+    @Step("Set text {1} on {0}")
     public static void setText(By by, String value) {
         waitForPageLoaded();
         waitForElementVisible(by);

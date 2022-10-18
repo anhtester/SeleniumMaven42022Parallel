@@ -34,7 +34,7 @@
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
-            <version>7.6.1</version>
+            <version>7.4.0</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-simple -->
@@ -121,7 +121,7 @@
             <version>1.18.24</version>
             <scope>provided</scope>
         </dependency>
-        
+
     </dependencies>
 
     <build>
@@ -135,6 +135,7 @@
                         <suiteXmlFiles>
                             <!-- Call Suite name -->
                             <suiteXmlFile>suites/ParallelLoginTest.xml</suiteXmlFile>
+                            <!--                            <suiteXmlFile>suites/ParallelLoginTest.xml</suiteXmlFile>-->
                         </suiteXmlFiles>
                         <argLine>
                             -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/1.9.9.1/aspectjweaver-1.9.9.1.jar"

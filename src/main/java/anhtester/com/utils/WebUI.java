@@ -1,9 +1,9 @@
 package anhtester.com.utils;
 
 import anhtester.com.driver.DriverManager;
+import anhtester.com.reports.AllureManager;
 import anhtester.com.reports.ExtentTestManager;
 import com.aventstack.extentreports.Status;
-import io.qameta.allure.Attachment;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -45,6 +45,7 @@ public class WebUI {
         return DriverManager.getDriver().findElements(by);
     }
 
+    @Step("Verify Equals: {0} and {1}")
     public static void verifyEquals(Object actual, Object expected) {
         waitForPageLoaded();
         sleep(STEP_TIME);
@@ -53,6 +54,7 @@ public class WebUI {
         Assert.assertEquals(actual, expected, "Fail. Not match. '" + actual.toString() + "' != '" + expected.toString() + "'");
     }
 
+    @Step("Verify Equals: {0} and {1}")
     public static void verifyEquals(Object actual, Object expected, String message) {
         waitForPageLoaded();
         sleep(STEP_TIME);
@@ -76,12 +78,6 @@ public class WebUI {
         }
     }
 
-    //Text attachments for Allure
-    @Attachment(value = "{0}", type = "text/plain")
-    public static String saveTextLog(String message) {
-        return message;
-    }
-
     @Step("Open URL: {0}")
     public static void openURL(String url) {
         DriverManager.getDriver().get(url);
@@ -89,7 +85,7 @@ public class WebUI {
         Log.info("Open: " + url);
         ExtentTestManager.logMessage(Status.PASS, "Open URL: " + url);
 
-        saveTextLog("Open: " + url);
+        AllureManager.saveTextLog("Open: " + url);
 
         waitForPageLoaded();
     }
@@ -102,9 +98,10 @@ public class WebUI {
         getWebElement(by).click();
         Log.info("Click element: " + by);
         ExtentTestManager.logMessage(Status.PASS, "Click element: " + by);
-        saveTextLog("Click element: " + by);
+        AllureManager.saveTextLog("Click element: " + by);
     }
 
+    @Step("Click element {0} with timeout {1}")
     public static void clickElement(By by, long timeout) {
         waitForPageLoaded();
         waitForElementVisible(by);
@@ -124,6 +121,7 @@ public class WebUI {
         ExtentTestManager.logMessage(Status.PASS, "Set text: " + value + " on element " + by);
     }
 
+    @Step("Get text of element {0}")
     public static String getElementText(By by) {
         waitForPageLoaded();
         waitForElementVisible(by);

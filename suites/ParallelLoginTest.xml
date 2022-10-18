@@ -8,7 +8,9 @@
             <!--            <class name="anhtester.com.testcases.LoginTest"/>-->
             <class name="anhtester.com.testcases.LoginTest">
                 <methods>
+                    <include name="testLoginFromDataProvider"/>
                     <include name="testLoginWithUsernameInValid"/>
+
                 </methods>
             </class>
         </classes>

@@ -53,17 +53,18 @@ public class TestListener implements ITestListener {
 
         //Extent Report
         ExtentTestManager.addScreenShot(result.getName());
-        ExtentTestManager.logMessage(Status.FAIL, result.getName() + " is failed.");
+        //ExtentTestManager.logMessage(Status.FAIL, result.getName() + " is failed.");
+        ExtentTestManager.logMessage(Status.FAIL, result.getThrowable().toString());
 
         //Allure Report
-        AllureManager.saveTextLog(result.getName() + " is fail.");
+        AllureManager.saveTextLog(result.getName() + " is failed.");
         AllureManager.saveScreenshotPNG();
     }
 
     @Override
     public void onTestSkipped(ITestResult result) {
-        System.out.println(result.getName() + " is skip.");
-        ExtentTestManager.logMessage(Status.SKIP, result.getName() + " is skipped.");
+        Log.warn(result.getName() + " is skipped.");
+        ExtentTestManager.logMessage(Status.SKIP, result.getThrowable().toString());
     }
 
     @Override

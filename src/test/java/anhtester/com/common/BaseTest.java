@@ -31,6 +31,7 @@ public class BaseTest extends CommonPage {
     public static void createDriver(@Optional("chrome") String browserName) {
         WebDriver driver = setupBrowser(browserName);
         DriverManager.setDriver(driver);
+        //PropertiesHelpers.loadAllFiles();
     }
 
     //Viết hàm trung gian để lựa chọn Browser cần chạy với giá trị tham số "browser" bên trên truyền vào

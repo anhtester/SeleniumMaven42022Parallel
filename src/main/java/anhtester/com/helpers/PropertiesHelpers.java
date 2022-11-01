@@ -20,6 +20,7 @@ public class PropertiesHelpers {
 
         files.add("src/test/resources/object.properties");
         files.add("src/test/resources/configs.properties");
+        files.add("src/test/resources/data.properties");
 
         try {
             properties = new Properties();

@@ -1,6 +1,7 @@
 package anhtester.com.utils;
 
 import anhtester.com.driver.DriverManager;
+import anhtester.com.helpers.PropertiesHelpers;
 import anhtester.com.reports.AllureManager;
 import anhtester.com.reports.ExtentTestManager;
 import com.aventstack.extentreports.Status;
@@ -21,7 +22,7 @@ import java.util.List;
 
 public class WebUI {
 
-    private final static int TIMEOUT = 10;
+    private final static int TIMEOUT = Integer.parseInt(PropertiesHelpers.getValue("TIMEOUT"));
     private final static double STEP_TIME = 0;
     private final static int PAGE_LOAD_TIMEOUT = 20;
 
@@ -199,12 +200,17 @@ public class WebUI {
 
     public static void scrollToElement(By element) {
         JavascriptExecutor js = (JavascriptExecutor) DriverManager.getDriver();
-        js.executeScript("arguments[0].scrollIntoView(true);", getWebElement(element));
+        js.executeScript("arguments[0].scrollIntoView(false);", getWebElement(element));
     }
 
     public static void scrollToElement(WebElement element) {
         JavascriptExecutor js = (JavascriptExecutor) DriverManager.getDriver();
-        js.executeScript("arguments[0].scrollIntoView(true);", element);
+        js.executeScript("arguments[0].scrollIntoView(false);", element);
+    }
+
+    public static void scrollToElement(WebElement element, String type) {
+        JavascriptExecutor js = (JavascriptExecutor) DriverManager.getDriver();
+        js.executeScript("arguments[0].scrollIntoView(" + type + ");", element);
     }
 
     public static void scrollToPosition(int X, int Y) {

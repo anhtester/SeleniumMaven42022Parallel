@@ -1,13 +1,11 @@
 package anhtester.com.pages;
 
+import anhtester.com.helpers.PropertiesHelpers;
 import anhtester.com.utils.WebUI;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 
 public class CommonPage {
-
-    public CommonPage() {
-    }
 
     //Khai báo đối tượng cho Class chung
     public LoginPage loginPage;

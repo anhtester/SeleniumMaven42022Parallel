@@ -12,8 +12,8 @@ import org.testng.annotations.Test;
 
 import java.util.Hashtable;
 
-@Epic("Đây là Epic")
-@Feature("Đây là Feature")
+@Epic("Regression Test v1.0.0")
+@Feature("Login Test")
 public class LoginTest extends BaseTest {
 
     public LoginPage loginPage;

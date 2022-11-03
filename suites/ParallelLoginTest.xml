@@ -7,11 +7,11 @@
         <classes>
             <!--            <class name="anhtester.com.testcases.LoginTest"/>-->
             <class name="anhtester.com.testcases.LoginTest">
-                <methods>
-                    <include name="testLoginFromDataProvider"/>
-                    <!--                    <include name="testLoginWithUsernameInValid"/>-->
+<!--                <methods>-->
+<!--                    <include name="testLoginFromDataProvider"/>-->
+<!--                    &lt;!&ndash;<include name="testLoginWithUsernameInValid"/>&ndash;&gt;-->
 
-                </methods>
+<!--                </methods>-->
             </class>
         </classes>
     </test>

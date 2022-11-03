@@ -21,11 +21,6 @@ import java.io.IOException;
 @Listeners(TestListener.class)
 public class BaseTest extends CommonPage {
 
-    //Luôn chạy trước trong 1 class
-    public BaseTest() {
-        PropertiesHelpers.loadAllFiles();
-    }
-
     @BeforeMethod
     @Parameters({"browser"})
     public static void createDriver(@Optional("chrome") String browserName) {

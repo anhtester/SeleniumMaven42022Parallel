@@ -1,6 +1,7 @@
 package anhtester.com.listeners;
 
 import anhtester.com.helpers.CaptureHelpers;
+import anhtester.com.helpers.PropertiesHelpers;
 import anhtester.com.reports.AllureManager;
 import anhtester.com.reports.ExtentReportManager;
 import anhtester.com.reports.ExtentTestManager;
@@ -23,6 +24,7 @@ public class TestListener implements ITestListener {
     @Override
     public void onStart(ITestContext result) {
         System.out.println("Start Suite: " + result.getStartDate());
+        PropertiesHelpers.loadAllFiles();
         CaptureHelpers.startRecord(result.getName());
     }
 

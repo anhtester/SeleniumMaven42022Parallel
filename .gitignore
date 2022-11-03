@@ -21,3 +21,4 @@ VideoRecord
 *.log
 allure-results
 ExtentReports
+logs

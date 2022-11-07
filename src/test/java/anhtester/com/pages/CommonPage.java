@@ -7,6 +7,7 @@ import org.testng.Assert;
 public class CommonPage {
 
     public CommonPage() {
+
     }
 
     //Khai báo đối tượng cho Class chung

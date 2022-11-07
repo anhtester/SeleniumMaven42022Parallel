@@ -24,6 +24,12 @@ public class BaseTest extends CommonPage {
     //Luôn chạy trước trong 1 class
     public BaseTest() {
         PropertiesHelpers.loadAllFiles();
+//        if (PropertiesHelpers.getValue("ENV") == "production") {
+//            PropertiesHelpers.setFile("src/test/resources/production.properties");
+//        }
+//        if (PropertiesHelpers.getValue("ENV") == "staging") {
+//            PropertiesHelpers.setFile("src/test/resources/staging.properties");
+//        }
     }
 
     @BeforeMethod

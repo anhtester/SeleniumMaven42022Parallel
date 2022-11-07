@@ -4,9 +4,13 @@ import anhtester.com.common.BaseTest;
 import anhtester.com.helpers.Helpers;
 import anhtester.com.pages.UploadFileCMSPage;
 import anhtester.com.utils.WebUI;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 
+@Epic("Regression Test")
+@Feature("Upload Test")
 public class UploadFileCMS extends BaseTest {
 
     @Test

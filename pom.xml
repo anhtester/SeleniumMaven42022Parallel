@@ -135,7 +135,7 @@
                         <suiteXmlFiles>
                             <!-- Call Suite name -->
                             <suiteXmlFile>suites/ParallelLoginTest.xml</suiteXmlFile>
-                            <!--                            <suiteXmlFile>suites/ParallelLoginTest.xml</suiteXmlFile>-->
+                            <!--<suiteXmlFile>suites/ParallelLoginTest.xml</suiteXmlFile>-->
                         </suiteXmlFiles>
                         <argLine>
                             -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/1.9.9.1/aspectjweaver-1.9.9.1.jar"

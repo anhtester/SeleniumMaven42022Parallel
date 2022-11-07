@@ -1,6 +1,6 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="Suite Parallel Login Test" verbose="1">
+<suite name="Regression Test" verbose="1">
 
     <!--    <listeners>-->
     <!--        <listener class-name="anhtester.com.listeners.TestListener"></listener>-->
@@ -10,9 +10,12 @@
         <classes>
             <class name="anhtester.com.testcases.LoginTest">
                 <methods>
-                    <include name="testLoginFromDataProvider"/>
-                    <include name="testLoginWithUsernameInValid"/>
                     <include name="testForgotPassword"/>
+                </methods>
+            </class>
+            <class name="anhtester.com.testcases.UploadFileCMS">
+                <methods>
+                    <include name="testUploadFileWithSendKeys"/>
                 </methods>
             </class>
         </classes>

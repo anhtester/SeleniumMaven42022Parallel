@@ -1,6 +1,8 @@
 package anhtester.com.utils;
 
 import anhtester.com.driver.DriverManager;
+import anhtester.com.helpers.CaptureHelpers;
+import anhtester.com.helpers.Helpers;
 import anhtester.com.helpers.PropertiesHelpers;
 import anhtester.com.reports.AllureManager;
 import anhtester.com.reports.ExtentTestManager;
@@ -23,8 +25,8 @@ import java.util.List;
 public class WebUI {
 
     private final static int TIMEOUT = Integer.parseInt(PropertiesHelpers.getValue("TIMEOUT"));
-    private final static double STEP_TIME = 0;
-    private final static int PAGE_LOAD_TIMEOUT = 20;
+    private final static double STEP_TIME = Double.parseDouble(PropertiesHelpers.getValue("STEP_TIME"));
+    private final static int PAGE_LOAD_TIMEOUT = Integer.parseInt(PropertiesHelpers.getValue("PAGE_LOAD_TIMEOUT"));
 
     public static void sleep(double second) {
         try {
@@ -85,10 +87,11 @@ public class WebUI {
         sleep(STEP_TIME);
         Log.info("Open: " + url);
         ExtentTestManager.logMessage(Status.PASS, "Open URL: " + url);
-
         AllureManager.saveTextLog("Open: " + url);
-
         waitForPageLoaded();
+        if (PropertiesHelpers.getValue("screenshot_step").equals("yes")) {
+            CaptureHelpers.takeScreenshot("openURL_" + Helpers.makeSlug(url));
+        }
     }
 
     @Step("Click element: {0}")
@@ -100,6 +103,10 @@ public class WebUI {
         Log.info("Click element: " + by);
         ExtentTestManager.logMessage(Status.PASS, "Click element: " + by);
         AllureManager.saveTextLog("Click element: " + by);
+
+        if (PropertiesHelpers.getValue("screenshot_step").equals("yes")) {
+            CaptureHelpers.takeScreenshot("clickElement_" + Helpers.makeSlug(by.toString()));
+        }
     }
 
     @Step("Click element {0} with timeout {1}")
@@ -110,6 +117,10 @@ public class WebUI {
         getWebElement(by).click();
         Log.info("Click element: " + by);
         ExtentTestManager.logMessage(Status.PASS, "Click element: " + by);
+
+        if (PropertiesHelpers.getValue("screenshot_step").equals("yes")) {
+            CaptureHelpers.takeScreenshot("clickElement_" + Helpers.makeSlug(by.toString()));
+        }
     }
 
     @Step("Set text {1} on {0}")
@@ -120,6 +131,10 @@ public class WebUI {
         getWebElement(by).sendKeys(value);
         Log.info("Set text: " + value + " on element " + by);
         ExtentTestManager.logMessage(Status.PASS, "Set text: " + value + " on element " + by);
+
+        if (PropertiesHelpers.getValue("screenshot_step").equals("yes")) {
+            CaptureHelpers.takeScreenshot("setText_" + Helpers.makeSlug(by.toString()));
+        }
     }
 
     @Step("Get text of element {0}")
@@ -206,6 +221,10 @@ public class WebUI {
     public static void scrollToElement(WebElement element) {
         JavascriptExecutor js = (JavascriptExecutor) DriverManager.getDriver();
         js.executeScript("arguments[0].scrollIntoView(false);", element);
+
+        if (PropertiesHelpers.getValue("screenshot_step").equals("yes")) {
+            CaptureHelpers.takeScreenshot("scrollToElement_" + Helpers.makeSlug(element.getText()));
+        }
     }
 
     public static void scrollToElement(WebElement element, String type) {

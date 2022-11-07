@@ -103,10 +103,32 @@ public class CaptureHelpers extends ScreenRecorder {
         }
 
         try {
+
             FileHandler.copy(source, new File("./screenshots/" + result.getName() + ".png"));
+
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
         System.out.println("Screenshot taken: " + result.getName());
+    }
+
+    //Take a screenshot
+    public static void takeScreenshot(String name) {
+        TakesScreenshot ts = (TakesScreenshot) DriverManager.getDriver();
+        File source = ts.getScreenshotAs(OutputType.FILE);
+
+        File theDir = new File("./screenshots/");
+        if (!theDir.exists()) {
+            theDir.mkdirs();
+        }
+
+        try {
+
+            FileHandler.copy(source, new File("./screenshots/" + name + ".png"));
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        System.out.println("Screenshot taken: " + name);
     }
 }

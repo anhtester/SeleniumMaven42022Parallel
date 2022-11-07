@@ -1,6 +1,7 @@
 package anhtester.com.listeners;
 
 import anhtester.com.helpers.CaptureHelpers;
+import anhtester.com.helpers.PropertiesHelpers;
 import anhtester.com.reports.AllureManager;
 import anhtester.com.reports.ExtentReportManager;
 import anhtester.com.reports.ExtentTestManager;
@@ -22,16 +23,20 @@ public class TestListener implements ITestListener {
 
     @Override
     public void onStart(ITestContext result) {
-        System.out.println("Start Suite: " + result.getStartDate());
-        CaptureHelpers.startRecord(result.getName());
+        Log.info("Starting Suite: " + result.getStartDate());
+        if (PropertiesHelpers.getValue("record_video").equals("yes")) {
+            CaptureHelpers.startRecord(result.getName());
+        }
+
     }
 
     @Override
     public void onFinish(ITestContext result) {
-        System.out.println("Finish Suite: " + result.getEndDate());
-        CaptureHelpers.stopRecord();
+        Log.info("Finish Suite: " + result.getEndDate());
+        if (PropertiesHelpers.getValue("record_video").equals("yes")) {
+            CaptureHelpers.stopRecord();
+        }
         ExtentReportManager.getExtentReports().flush(); //Kết thúc và thực thi xuất report ra file
-
     }
 
     @Override
@@ -48,7 +53,11 @@ public class TestListener implements ITestListener {
     @Override
     public void onTestFailure(ITestResult result) {
         //System.out.println(result.getName() + " is fail.");
-        CaptureHelpers.takeScreenshot(result); //Chụp màn hình khi Fail
+
+        if (PropertiesHelpers.getValue("screenshot_fail").equals("yes")) {
+            CaptureHelpers.takeScreenshot(result); //Chụp màn hình khi Fail
+        }
+
         Log.error(result.getName() + " is fail.");
 
         //Extent Report
@@ -69,7 +78,6 @@ public class TestListener implements ITestListener {
 
     @Override
     public void onTestFailedButWithinSuccessPercentage(ITestResult result) {
-
     }
 
 }

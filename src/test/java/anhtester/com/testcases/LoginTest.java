@@ -12,8 +12,8 @@ import org.testng.annotations.Test;
 
 import java.util.Hashtable;
 
-@Epic("Đây là Epic")
-@Feature("Đây là Feature")
+@Epic("Regression Test")
+@Feature("Login Test")
 public class LoginTest extends BaseTest {
 
     public LoginPage loginPage;
@@ -28,7 +28,7 @@ public class LoginTest extends BaseTest {
     @Test(priority = 1, dataProvider = "data_provider_login", dataProviderClass = DataProviderManager.class)
     public void testLoginFromDataProvider(String username, String password) {
         loginPage.logIn(username, password);
-        //commonPage.dangXuat();
+        commonPage.dangXuat();
     }
 
     @Test(priority = 2, dataProvider = "data_provider_login_from_excel_by_row", dataProviderClass = DataProviderManager.class)

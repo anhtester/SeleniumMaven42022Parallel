@@ -5,7 +5,7 @@ import org.openqa.selenium.By;
 import org.testng.Assert;
 
 public class CommonPage {
-    
+
     //Khai báo đối tượng cho Class chung
     public LoginPage loginPage;
     public DashboardPage dashboardPage;

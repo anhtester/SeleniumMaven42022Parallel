@@ -27,7 +27,7 @@ public class TestListener implements ITestListener {
         if (PropertiesHelpers.getValue("record_video").equals("yes")) {
             CaptureHelpers.startRecord(result.getName());
         }
-
+        PropertiesHelpers.loadAllFiles();
     }
 
     @Override

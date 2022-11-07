@@ -13,6 +13,7 @@ import org.testng.annotations.Test;
 import java.util.Hashtable;
 
 @Epic("Regression Test")
+@Epic("Regression Test v1.0.0")
 @Feature("Login Test")
 public class LoginTest extends BaseTest {
 

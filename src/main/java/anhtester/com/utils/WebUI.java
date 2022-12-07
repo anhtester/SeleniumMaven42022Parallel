@@ -66,6 +66,7 @@ public class WebUI {
         Assert.assertEquals(actual, expected, message);
     }
 
+    @Step("Check element existing {0}")
     public static Boolean checkElementExist(By by) {
         waitForPageLoaded();
         waitForElementVisible(by);
@@ -87,22 +88,21 @@ public class WebUI {
         sleep(STEP_TIME);
         Log.info("Open: " + url);
         ExtentTestManager.logMessage(Status.PASS, "Open URL: " + url);
-        AllureManager.saveTextLog("Open: " + url);
+        AllureManager.saveTextLog("Open URL: " + url);
         waitForPageLoaded();
         if (PropertiesHelpers.getValue("screenshot_step").equals("yes")) {
             CaptureHelpers.takeScreenshot("openURL_" + Helpers.makeSlug(url));
         }
     }
 
-    @Step("Click element: {0}")
+    @Step("Click element {0}")
     public static void clickElement(By by) {
         waitForPageLoaded();
         waitForElementVisible(by);
         sleep(STEP_TIME);
         getWebElement(by).click();
-        Log.info("Click element: " + by);
-        ExtentTestManager.logMessage(Status.PASS, "Click element: " + by);
-        AllureManager.saveTextLog("Click element: " + by);
+        Log.info("Click element " + by);
+        ExtentTestManager.logMessage(Status.PASS, "Click element " + by);
 
         if (PropertiesHelpers.getValue("screenshot_step").equals("yes")) {
             CaptureHelpers.takeScreenshot("clickElement_" + Helpers.makeSlug(by.toString()));
@@ -115,8 +115,8 @@ public class WebUI {
         waitForElementVisible(by);
         sleep(STEP_TIME);
         getWebElement(by).click();
-        Log.info("Click element: " + by);
-        ExtentTestManager.logMessage(Status.PASS, "Click element: " + by);
+        Log.info("Click element " + by);
+        ExtentTestManager.logMessage(Status.PASS, "Click element " + by);
 
         if (PropertiesHelpers.getValue("screenshot_step").equals("yes")) {
             CaptureHelpers.takeScreenshot("clickElement_" + Helpers.makeSlug(by.toString()));
@@ -213,11 +213,13 @@ public class WebUI {
 
     //Vài hàm bổ trợ nâng cao hơn
 
-    public static void scrollToElement(By element) {
+    @Step("Scroll to element {0}")
+    public static void scrollToElement(By by) {
         JavascriptExecutor js = (JavascriptExecutor) DriverManager.getDriver();
-        js.executeScript("arguments[0].scrollIntoView(false);", getWebElement(element));
+        js.executeScript("arguments[0].scrollIntoView(false);", getWebElement(by));
     }
 
+    @Step("Scroll to element {0}")
     public static void scrollToElement(WebElement element) {
         JavascriptExecutor js = (JavascriptExecutor) DriverManager.getDriver();
         js.executeScript("arguments[0].scrollIntoView(false);", element);
@@ -227,20 +229,23 @@ public class WebUI {
         }
     }
 
+    @Step("Scroll to element {0} with type {1}")
     public static void scrollToElement(WebElement element, String type) {
         JavascriptExecutor js = (JavascriptExecutor) DriverManager.getDriver();
         js.executeScript("arguments[0].scrollIntoView(" + type + ");", element);
     }
 
+    @Step("Scroll to position with X={0}, Y={1}")
     public static void scrollToPosition(int X, int Y) {
         JavascriptExecutor js = (JavascriptExecutor) DriverManager.getDriver();
         js.executeScript("window.scrollTo(" + X + "," + Y + ");");
     }
 
-    public static boolean moveToElement(By toElement) {
+    @Step("Move to element {0}")
+    public static boolean moveToElement(By by) {
         try {
             Actions action = new Actions(DriverManager.getDriver());
-            action.moveToElement(getWebElement(toElement)).release(getWebElement(toElement)).build().perform();
+            action.moveToElement(getWebElement(by)).release(getWebElement(by)).build().perform();
             return true;
         } catch (Exception e) {
             Log.info(e.getMessage());
@@ -259,6 +264,21 @@ public class WebUI {
         }
     }
 
+    /**
+     * @param by truyền vào đối tượng element dạng By
+     * @return Tô màu viền đỏ cho Element trên website
+     */
+    @Step("Highlight element {0}")
+    public static WebElement highLightElement(By by) {
+        // Tô màu border ngoài chính element chỉ định - màu đỏ (có thể đổi màu khác)
+        if (DriverManager.getDriver() instanceof JavascriptExecutor) {
+            ((JavascriptExecutor) DriverManager.getDriver()).executeScript("arguments[0].style.border='3px solid red'", getWebElement(by));
+            sleep(1);
+        }
+        return getWebElement(by);
+    }
+
+    @Step("Hover on element {0}")
     public static boolean hoverElement(By by) {
         try {
             Actions action = new Actions(DriverManager.getDriver());
@@ -269,6 +289,7 @@ public class WebUI {
         }
     }
 
+    @Step("Mouse hover on element {0}")
     public static boolean mouseHover(By by) {
         try {
             Actions action = new Actions(DriverManager.getDriver());
@@ -279,6 +300,7 @@ public class WebUI {
         }
     }
 
+    @Step("Drag element {0} to element {1}")
     public static boolean dragAndDrop(By fromElement, By toElement) {
         try {
             Actions action = new Actions(DriverManager.getDriver());
@@ -314,6 +336,7 @@ public class WebUI {
         }
     }
 
+    @Step("Press ENTER on keyboard")
     public static boolean pressENTER() {
         try {
             Robot robot = new Robot();
@@ -325,6 +348,7 @@ public class WebUI {
         }
     }
 
+    @Step("Press ESC on keyboard")
     public static boolean pressESC() {
         try {
             Robot robot = new Robot();
@@ -336,6 +360,7 @@ public class WebUI {
         }
     }
 
+    @Step("Press F11 on keyboard")
     public static boolean pressF11() {
         try {
             Robot robot = new Robot();
@@ -345,19 +370,6 @@ public class WebUI {
         } catch (Exception e) {
             return false;
         }
-    }
-
-    /**
-     * @param by truyền vào đối tượng element dạng By
-     * @return Tô màu viền đỏ cho Element trên website
-     */
-    public static WebElement highLightElement(By by) {
-        // Tô màu border ngoài chính element chỉ định - màu đỏ (có thể đổi màu khác)
-        if (DriverManager.getDriver() instanceof JavascriptExecutor) {
-            ((JavascriptExecutor) DriverManager.getDriver()).executeScript("arguments[0].style.border='3px solid red'", getWebElement(by));
-            sleep(1);
-        }
-        return getWebElement(by);
     }
 
     /**

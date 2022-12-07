@@ -58,12 +58,13 @@ public class TestListener implements ITestListener {
             CaptureHelpers.takeScreenshot(result); //Chụp màn hình khi Fail
         }
 
+        Log.error(result.getThrowable().toString());
         Log.error(result.getName() + " is fail.");
 
         //Extent Report
         ExtentTestManager.addScreenShot(result.getName());
-        //ExtentTestManager.logMessage(Status.FAIL, result.getName() + " is failed.");
         ExtentTestManager.logMessage(Status.FAIL, result.getThrowable().toString());
+        ExtentTestManager.logMessage(Status.FAIL, result.getName() + " is failed.");
 
         //Allure Report
         AllureManager.saveTextLog(result.getName() + " is failed.");

@@ -1,5 +1,6 @@
 package anhtester.com.listeners;
 
+import anhtester.com.constants.ConstantGlobal;
 import anhtester.com.helpers.CaptureHelpers;
 import anhtester.com.helpers.PropertiesHelpers;
 import anhtester.com.reports.AllureManager;
@@ -23,17 +24,18 @@ public class TestListener implements ITestListener {
 
     @Override
     public void onStart(ITestContext result) {
+        PropertiesHelpers.loadAllFiles();
+
         Log.info("Starting Suite: " + result.getStartDate());
-        if (PropertiesHelpers.getValue("record_video").equals("yes")) {
+        if (ConstantGlobal.RECORD_VIDEO.equals("yes")) {
             CaptureHelpers.startRecord(result.getName());
         }
-        PropertiesHelpers.loadAllFiles();
     }
 
     @Override
     public void onFinish(ITestContext result) {
         Log.info("Finish Suite: " + result.getEndDate());
-        if (PropertiesHelpers.getValue("record_video").equals("yes")) {
+        if (ConstantGlobal.RECORD_VIDEO.equals("yes")) {
             CaptureHelpers.stopRecord();
         }
         ExtentReportManager.getExtentReports().flush(); //Kết thúc và thực thi xuất report ra file
@@ -46,15 +48,18 @@ public class TestListener implements ITestListener {
 
     @Override
     public void onTestSuccess(ITestResult result) {
+        if (ConstantGlobal.SCREENSHOT_PASS.equals("yes")) {
+            CaptureHelpers.takeScreenshot(result); //Chụp màn hình khi Fail
+        }
+
         Log.info(result.getName() + " is pass.");
         ExtentTestManager.logMessage(Status.PASS, result.getName() + " is passed.");
     }
 
     @Override
     public void onTestFailure(ITestResult result) {
-        //System.out.println(result.getName() + " is fail.");
 
-        if (PropertiesHelpers.getValue("screenshot_fail").equals("yes")) {
+        if (ConstantGlobal.SCREENSHOT_FAIL.equals("yes")) {
             CaptureHelpers.takeScreenshot(result); //Chụp màn hình khi Fail
         }
 
@@ -73,6 +78,9 @@ public class TestListener implements ITestListener {
 
     @Override
     public void onTestSkipped(ITestResult result) {
+        if (ConstantGlobal.SCREENSHOT_FAIL.equals("yes")) {
+            CaptureHelpers.takeScreenshot(result); //Chụp màn hình khi Skip
+        }
         Log.warn(result.getName() + " is skipped.");
         ExtentTestManager.logMessage(Status.SKIP, result.getThrowable().toString());
     }

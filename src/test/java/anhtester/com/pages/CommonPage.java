@@ -16,6 +16,7 @@ public class CommonPage {
     //Object chung
     public By headerPage = By.xpath("//li[@class='nav-item active']/a");
     public By buttonDangXuat = By.xpath("//div[@class='page-header']//a[normalize-space()='Logout']");
+    public By menuTrangChu = By.xpath("//a[normalize-space()='Home']");
     private By menuProject = By.xpath("//span[contains(text(),'Projects')]");
     private By menuTask = By.xpath("//span[normalize-space()='Tasks']");
     //Hàm chung để get khởi tạo của các trang khai báo trên và các hàm xử lý chung

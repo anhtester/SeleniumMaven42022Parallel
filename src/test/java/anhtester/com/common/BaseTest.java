@@ -1,27 +1,25 @@
 package anhtester.com.common;
 
+import anhtester.com.constants.ConstantGlobal;
 import anhtester.com.driver.DriverManager;
 import anhtester.com.listeners.TestListener;
 import anhtester.com.pages.CommonPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.io.FileHandler;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
-
-import java.io.File;
-import java.io.IOException;
 
 @Listeners(TestListener.class)
 public class BaseTest extends CommonPage {
 
     @BeforeMethod
-    @Parameters({"browser"})
+    @Parameters({"BROWSER"})
     public static void createDriver(@Optional("chrome") String browserName) {
         WebDriver driver = setupBrowser(browserName);
         DriverManager.setDriver(driver);
@@ -53,7 +51,11 @@ public class BaseTest extends CommonPage {
         WebDriver driver;
         System.out.println("Launching Chrome browser...");
         WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
+
+        ChromeOptions options = new ChromeOptions();
+        options.setHeadless(ConstantGlobal.HEADLESS);
+
+        driver = new ChromeDriver(options);
         driver.manage().window().maximize();
         return driver;
     }
@@ -62,7 +64,11 @@ public class BaseTest extends CommonPage {
         WebDriver driver;
         System.out.println("Launching Edge browser...");
         WebDriverManager.edgedriver().setup();
-        driver = new EdgeDriver();
+
+        EdgeOptions options = new EdgeOptions();
+        options.setHeadless(ConstantGlobal.HEADLESS);
+
+        driver = new EdgeDriver(options);
         driver.manage().window().maximize();
         return driver;
     }
@@ -71,43 +77,17 @@ public class BaseTest extends CommonPage {
         WebDriver driver;
         System.out.println("Launching Firefox browser...");
         WebDriverManager.firefoxdriver().setup();
-        driver = new FirefoxDriver();
+
+        FirefoxOptions options = new FirefoxOptions();
+        options.setHeadless(ConstantGlobal.HEADLESS);
+
+        driver = new FirefoxDriver(options);
         driver.manage().window().maximize();
         return driver;
     }
 
     @AfterMethod
     public static void closeDriver(ITestResult result) {
-        //Chụp màn hình khi Fail
-        if (result.getStatus() == ITestResult.FAILURE) {
-
-            // Tạo tham chiếu của TakesScreenshot với driver hiện tại
-            TakesScreenshot ts = (TakesScreenshot) DriverManager.getDriver();
-// Gọi hàm capture screenshot - getScreenshotAs
-            File source = ts.getScreenshotAs(OutputType.FILE);
-//Kiểm tra folder tồn tại. Nêu không thì tạo mới folder
-            File theDir = new File("./Screenshots/");
-            if (!theDir.exists()) {
-                theDir.mkdirs();
-            }
-// result.getName() lấy tên của test case xong gán cho tên File chụp màn hình luôn
-            try {
-                FileHandler.copy(source, new File("./Screenshots/" + result.getName() + ".png"));
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-            System.out.println("Screenshot taken: " + result.getName());
-
-        }
-
-
-        //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(0)); //Reset timeout
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-
         if (DriverManager.getDriver() != null) {
             DriverManager.quit();
         }

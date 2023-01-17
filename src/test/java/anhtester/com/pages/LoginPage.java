@@ -1,6 +1,6 @@
 package anhtester.com.pages;
 
-import anhtester.com.helpers.PropertiesHelpers;
+import anhtester.com.constants.ConstantGlobal;
 import anhtester.com.utils.WebUI;
 import org.openqa.selenium.By;
 import org.testng.Assert;
@@ -12,7 +12,7 @@ public class LoginPage extends CommonPage {
     }
 
     //Login
-    private String pageText = "Welcome to HRM System";
+    private String pageText = "Welcome to HRSALE";
     private By inputUsername = By.xpath("//input[@id='iusername']");
     private By inputPassword = By.xpath("//input[@id='ipassword']");
     private By buttonSignin = By.xpath("//button[@type='submit']");
@@ -25,39 +25,35 @@ public class LoginPage extends CommonPage {
     private By linkClickHere = By.xpath("//a[normalize-space()='Click here']");
     private By alertMessage = By.xpath("//div[@class='toast-message']");
 
-
-    public DashboardPage logIn(String username, String password) {
-        WebUI.openURL(PropertiesHelpers.getValue("url"));
+    public void loginNormal(String username, String password) {
+        WebUI.openURL(ConstantGlobal.URL);
         WebUI.setText(inputUsername, username);
         WebUI.setText(inputPassword, password);
+        WebUI.sleep(1);
         WebUI.clickElement(buttonSignin);
-        WebUI.sleep(5);
-        //Wait for page loaded
-        //Xử lý Assert
-        //wait.until(ExpectedConditions.presenceOfElementLocated(dashboardPage.menuTrangChu));
-        boolean checkMenu = WebUI.checkElementExist(getDashboardPage().menuTrangChu);
-        Assert.assertTrue(checkMenu, "Login failed. Không tìm thấy menu Trang chủ.");
+    }
+
+    public DashboardPage logIn(String username, String password) {
+        loginNormal(username, password);
+        WebUI.waitForPageLoaded();
+        
+        boolean checkMenu = WebUI.checkElementExist(menuTrangChu);
+        Assert.assertTrue(checkMenu, "Login failed. Can not navigate to Dashboard page.");
 
         return new DashboardPage(); //Khởi tạo trang Dashboard
     }
 
     public void loginWithUsernameInValid(String username, String password) {
-        WebUI.openURL("https://app.hrsale.com/erp/login");
-        WebUI.setText(inputUsername, username);
-        WebUI.setText(inputPassword, password);
-        WebUI.clickElement(buttonSignin);
-        //Xử lý Assert
+        loginNormal(username, password);
+        //Assert kiểm tra chuyển hướng trang
         boolean checkAlertError = WebUI.checkElementExist(alertMessage);
-        //Assert.assertTrue(checkAlertError, "Fail. Error alert not display.");
-        WebUI.verifyEquals(WebUI.getElementText(alertMessage), "Invalid Login Credentials. 123");
+        Assert.assertTrue(checkAlertError, "Fail. Error alert not display.");
+        WebUI.verifyEquals(WebUI.getElementText(alertMessage), "Invalid Login Credentials.");
     }
 
     public void loginWithPasswordInValid(String username, String password) {
-        WebUI.openURL("https://app.hrsale.com/erp/login");
-        WebUI.setText(inputUsername, username);
-        WebUI.setText(inputPassword, password);
-        WebUI.clickElement(buttonSignin);
-        //Xử lý Assert
+        loginNormal(username, password);
+        //Assert kiểm tra alert message
         boolean checkAlertError = WebUI.checkElementExist(alertMessage);
         Assert.assertTrue(checkAlertError, "Fail. Error alert not display.");
         WebUI.verifyEquals(WebUI.getElementText(alertMessage), "Invalid Login Credentials.");
@@ -65,13 +61,13 @@ public class LoginPage extends CommonPage {
     }
 
     public void resetPassword(String emailForgot) {
-        WebUI.openURL("https://app.hrsale.com/erp/login");
+        WebUI.openURL(ConstantGlobal.URL);
         WebUI.clickElement(linkForgotPassword);
         WebUI.verifyEquals(WebUI.getElementText(pageTextForgotPassword), "Reset your password");
         WebUI.setText(inputEmailForgotPassword, emailForgot);
         WebUI.clickElement(buttonReset);
         //Assert cái message hiển thị thành công (tồn tại)
-        WebUI.verifyEquals(WebUI.getElementText(alertMessage), "Main.xin_error_msg__available");
+        WebUI.verifyEquals(WebUI.getElementText(alertMessage), "Main.xin_error_msg_not");
         WebUI.clickElement(linkClickHere);
     }
 

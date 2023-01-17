@@ -1,9 +1,9 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="Suite Parallel Login Test" verbose="1">
+<suite name="Suite Login HRM Test Parallel" verbose="1">
 
-    <test name="Regression on EDGE" parallel="methods">
-        <parameter name="browser" value="edge"></parameter>
+    <test name="Regression HRM" parallel="methods">
+        <parameter name="BROWSER" value="firefox"/>
         <classes>
             <class name="anhtester.com.testcases.LoginHRMTest"/>
         </classes>

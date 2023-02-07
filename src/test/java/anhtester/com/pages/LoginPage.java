@@ -36,7 +36,6 @@ public class LoginPage extends CommonPage {
     public DashboardPage logIn(String username, String password) {
         loginNormal(username, password);
         WebUI.waitForPageLoaded();
-        
         boolean checkMenu = WebUI.checkElementExist(menuTrangChu);
         Assert.assertTrue(checkMenu, "Login failed. Can not navigate to Dashboard page.");
 

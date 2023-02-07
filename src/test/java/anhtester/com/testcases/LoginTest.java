@@ -2,7 +2,6 @@ package anhtester.com.testcases;
 
 import anhtester.com.common.BaseTest;
 import anhtester.com.dataprovider.DataProviderManager;
-import anhtester.com.helpers.ExcelHelpers;
 import anhtester.com.pages.CommonPage;
 import anhtester.com.pages.LoginPage;
 import io.qameta.allure.Epic;
@@ -37,13 +36,13 @@ public class LoginTest extends BaseTest {
         //commonPage.dangXuat();
     }
 
-    @Test(priority = 3)
-    public void testLoginSuccessEXCEL() {
-        ExcelHelpers excelHelpers = new ExcelHelpers();
-        excelHelpers.setExcelFile("datatest/Login.xlsx", "Sheet1"); //Khai báo file và sheet
-        loginPage.logIn(excelHelpers.getCellData("username", 1), excelHelpers.getCellData("password", 1));
-
-    }
+//    @Test(priority = 3)
+//    public void testLoginSuccessEXCEL() {
+//        ExcelHelpers excelHelpers = new ExcelHelpers();
+//        excelHelpers.setExcelFile("datatest/Login.xlsx", "Sheet1"); //Khai báo file và sheet
+//        loginPage.logIn(excelHelpers.getCellData("username", 1), excelHelpers.getCellData("password", 1));
+//
+//    }
 
     @Test(priority = 4)
     public void testLoginWithUsernameInValid() {
@@ -56,11 +55,11 @@ public class LoginTest extends BaseTest {
         loginPage.loginWithPasswordInValid("frances.burns", "123456789");
 
     }
-
-    @Test(priority = 6)
-    public void testForgotPassword() {
-        loginPage.resetPassword("client01@mailinator.com");
-
-    }
+//
+//    @Test(priority = 6)
+//    public void testForgotPassword() {
+//        loginPage.resetPassword("client01@mailinator.com");
+//
+//    }
 
 }

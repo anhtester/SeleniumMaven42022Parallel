@@ -2,7 +2,7 @@
 
 <suite name="Suite Login Test Parallel">
 
-    <test name="Regression on CHROME">
+    <test name="Regression on CHROME" parallel="methods" thread-count="8">
         <parameter name="BROWSER" value="chrome"/>
         <classes>
             <class name="anhtester.com.testcases.LoginTest"/>

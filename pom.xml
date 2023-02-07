@@ -13,6 +13,9 @@
         <maven.compiler.target>11</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+        <suite.login.parallel>suites/ParallelLoginTest.xml</suite.login.parallel>
+        <suite.project.parallel>suites/ParallelProjectTest.xml</suite.project.parallel>
     </properties>
 
     <dependencies>
@@ -20,14 +23,14 @@
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
-            <version>4.7.2</version>
+            <version>4.8.0</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
         <dependency>
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
-            <version>5.3.1</version>
+            <version>5.3.2</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.testng/testng -->
@@ -41,6 +44,14 @@
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-simple</artifactId>
+            <version>2.0.6</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
             <version>2.0.6</version>
             <scope>test</scope>
         </dependency>
@@ -97,14 +108,14 @@
         <dependency>
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-testng</artifactId>
-            <version>2.20.0</version>
+            <version>2.20.1</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-attachments -->
         <dependency>
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-attachments</artifactId>
-            <version>2.20.0</version>
+            <version>2.20.1</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.aspectj/aspectjweaver -->
@@ -135,10 +146,10 @@
 
                         <suiteXmlFiles>
                             <!-- Call Suite name -->
-                            <suiteXmlFile>suites/ParallelLoginHRMTest.xml</suiteXmlFile>
+                            <suiteXmlFile>${suite.login.parallel}</suiteXmlFile>
                         </suiteXmlFiles>
 
-                        <!--Chấp nhận có TCs fail thì build Maven vẫn Passed-->
+                        <!--TRUE nghĩa là Chấp nhận có TCs fail thì build Maven vẫn Passed-->
                         <testFailureIgnore>true</testFailureIgnore>
 
                         <!--Add attachments to Allure Report-->

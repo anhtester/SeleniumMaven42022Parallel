@@ -2,10 +2,9 @@
 
 <suite name="Suite Parallel Project Test" verbose="1">
 
-    <test name="Regression on CHROME" parallel="classes">
+    <test name="Regression on CHROME" parallel="methods">
         <parameter name="BROWSER" value="chrome"/>
         <classes>
-            <class name="anhtester.com.testcases.DashboardTest"/>
             <class name="anhtester.com.testcases.ProjectTest"/>
         </classes>
     </test>

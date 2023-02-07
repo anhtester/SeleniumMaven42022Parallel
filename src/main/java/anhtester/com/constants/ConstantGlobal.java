@@ -3,6 +3,10 @@ package anhtester.com.constants;
 import anhtester.com.helpers.PropertiesHelpers;
 
 public class ConstantGlobal {
+    static {
+        PropertiesHelpers.loadAllFiles();
+    }
+
     public final static String BROWSER = PropertiesHelpers.getValue("BROWSER");
     public final static boolean HEADLESS = Boolean.parseBoolean(PropertiesHelpers.getValue("HEADLESS"));
     public final static String URL = PropertiesHelpers.getValue("URL");

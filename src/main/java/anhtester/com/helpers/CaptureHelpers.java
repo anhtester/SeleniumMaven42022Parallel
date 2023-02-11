@@ -1,5 +1,6 @@
 package anhtester.com.helpers;
 
+import anhtester.com.constants.ConstantGlobal;
 import anhtester.com.driver.DriverManager;
 import org.monte.media.Format;
 import org.monte.media.FormatKeys.MediaType;
@@ -57,7 +58,7 @@ public class CaptureHelpers extends ScreenRecorder {
     // Hàm Start record video
     public static void startRecord(String methodName) {
         //Tạo thư mục để lưu file video vào
-        File file = new File("./VideoRecord/");
+        File file = new File(ConstantGlobal.RECORD_VIDEO_PATH + File.separator + methodName + File.separator);
         if (!file.exists()) {
             file.mkdirs();
         }

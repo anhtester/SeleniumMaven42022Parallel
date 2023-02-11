@@ -30,6 +30,10 @@ public class WebUI {
     private final static long STEP_TIME = ConstantGlobal.STEP_TIME;
     private final static long PAGE_LOAD_TIMEOUT = ConstantGlobal.PAGE_LOAD_TIMEOUT;
 
+    static {
+        PropertiesHelpers.loadAllFiles();
+    }
+
     public static void sleep(double second) {
         try {
             Thread.sleep((long) (1000 * second));
@@ -87,7 +91,7 @@ public class WebUI {
     public static void openURL(String url) {
         DriverManager.getDriver().get(url);
         sleep(STEP_TIME);
-        Log.info("Open: " + url);
+        Log.info("Open URL: " + url);
         ExtentTestManager.logMessage(Status.PASS, "Open URL: " + url);
         AllureManager.saveTextLog("Open URL: " + url);
         waitForPageLoaded();

@@ -20,4 +20,5 @@ public class ConstantGlobal {
     public final static String SCREENSHOT_PASS = PropertiesHelpers.getValue("SCREENSHOT_PASS");
     public final static String SCREENSHOT_STEP = PropertiesHelpers.getValue("SCREENSHOT_STEP");
     public final static String RECORD_VIDEO = PropertiesHelpers.getValue("RECORD_VIDEO");
+    public final static String RECORD_VIDEO_PATH = PropertiesHelpers.getValue("RECORD_VIDEO_PATH");
 }

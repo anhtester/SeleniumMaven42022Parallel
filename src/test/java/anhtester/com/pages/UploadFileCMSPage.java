@@ -52,7 +52,7 @@ public class UploadFileCMSPage {
             e.printStackTrace();
         }
 
-        String filePath = Helpers.getCurrentDir() + "datatest\\Selenium4_Upload.png";
+        String filePath = Helpers.getCurrentDir() + "datatest\\Selenium4_Upload.jpg";
 
         // Copy File path vào Clipboard
         StringSelection str = new StringSelection(filePath);

@@ -1,4 +1,4 @@
-.idea
+.idea/
 target/
 pom.xml.tag
 pom.xml.releaseBackup
@@ -10,15 +10,10 @@ buildNumber.properties
 .mvn/timing.properties
 # https://github.com/takari/maven-wrapper#usage-without-binary-jar
 .mvn/wrapper/maven-wrapper.jar
-*.png
-*.jpg
-*.jpeg
-screenshots
-VideoRecord
+screenshots/
+VideoRecord/
 *.avi
 *.mp4
-*.mov
-*.log
-allure-results
-ExtentReports
-logs
+allure-results/
+ExtentReports/
+logs/

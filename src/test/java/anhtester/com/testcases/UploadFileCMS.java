@@ -20,7 +20,7 @@ public class UploadFileCMS extends BaseTest {
         By inputFileUpload = By.xpath("//input[@name='upfile']");
 
         //DriverManager.getDriver().findElement(inputFileUpload).sendKeys(Helpers.getCurrentDir() + "datatest/Selenium4_Upload.png");
-        WebUI.setText(inputFileUpload, Helpers.getCurrentDir() + "datatest/Selenium4_Upload.png");
+        WebUI.setText(inputFileUpload, Helpers.getCurrentDir() + "datatest\\Selenium4_Upload.jpg");
         Thread.sleep(3000);
     }
 

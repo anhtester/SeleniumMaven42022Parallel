@@ -1,6 +1,6 @@
 package anhtester.com.pages;
 
-import anhtester.com.utils.WebUI;
+import anhtester.com.keywords.WebUI;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 

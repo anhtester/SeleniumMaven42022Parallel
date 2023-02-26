@@ -3,7 +3,7 @@ package anhtester.com.testcases;
 import anhtester.com.common.BaseTest;
 import anhtester.com.driver.DriverManager;
 import anhtester.com.helpers.CaptureHelpers;
-import anhtester.com.utils.WebUI;
+import anhtester.com.keywords.WebUI;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;

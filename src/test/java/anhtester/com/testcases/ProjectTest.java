@@ -14,7 +14,7 @@ public class ProjectTest extends BaseTest {
 
     @Test
     public void testOpenProject() {
-        dashboardPage = loginPage.logIn("admin01", "123456"); //dashboardPage = new DashboardPage(driver);
+        dashboardPage = loginPage.logIn("frances.burns", "frances.burns"); //dashboardPage = new DashboardPage(driver);
         dashboardPage.openProject();
 
     }
@@ -28,7 +28,7 @@ public class ProjectTest extends BaseTest {
 
     @Test
     public void testNavigateToTasks() {
-        dashboardPage = loginPage.logIn("leader01", "123456");
+        dashboardPage = loginPage.logIn("frances.burns", "frances.burns");
         projectPage = dashboardPage.openProject();
         projectPage.openTask();
 

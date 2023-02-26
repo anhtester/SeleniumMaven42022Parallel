@@ -6,7 +6,7 @@ import anhtester.com.helpers.PropertiesHelpers;
 import anhtester.com.reports.AllureManager;
 import anhtester.com.reports.ExtentReportManager;
 import anhtester.com.reports.ExtentTestManager;
-import anhtester.com.utils.Log;
+import anhtester.com.utils.LogUtils;
 import com.aventstack.extentreports.Status;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
@@ -26,7 +26,7 @@ public class TestListener implements ITestListener {
     public void onStart(ITestContext result) {
         PropertiesHelpers.loadAllFiles();
 
-        Log.info("Starting Suite: " + result.getStartDate());
+        LogUtils.info("Starting Suite: " + result.getStartDate());
         if (ConstantGlobal.RECORD_VIDEO.equals("yes")) {
             CaptureHelpers.startRecord(result.getName());
         }
@@ -34,7 +34,7 @@ public class TestListener implements ITestListener {
 
     @Override
     public void onFinish(ITestContext result) {
-        Log.info("Finish Suite: " + result.getEndDate());
+        LogUtils.info("Finish Suite: " + result.getEndDate());
         if (ConstantGlobal.RECORD_VIDEO.equals("yes")) {
             CaptureHelpers.stopRecord();
         }
@@ -52,7 +52,7 @@ public class TestListener implements ITestListener {
             CaptureHelpers.takeScreenshot(result); //Chụp màn hình khi Fail
         }
 
-        Log.info(result.getName() + " is pass.");
+        LogUtils.info(result.getName() + " is pass.");
         ExtentTestManager.logMessage(Status.PASS, result.getName() + " is passed.");
     }
 
@@ -63,8 +63,8 @@ public class TestListener implements ITestListener {
             CaptureHelpers.takeScreenshot(result); //Chụp màn hình khi Fail
         }
 
-        Log.error(result.getThrowable().toString());
-        Log.error(result.getName() + " is fail.");
+        LogUtils.error(result.getThrowable().toString());
+        LogUtils.error(result.getName() + " is fail.");
 
         //Extent Report
         ExtentTestManager.addScreenShot(result.getName());
@@ -81,7 +81,7 @@ public class TestListener implements ITestListener {
         if (ConstantGlobal.SCREENSHOT_FAIL.equals("yes")) {
             CaptureHelpers.takeScreenshot(result); //Chụp màn hình khi Skip
         }
-        Log.warn(result.getName() + " is skipped.");
+        LogUtils.warn(result.getName() + " is skipped.");
         ExtentTestManager.logMessage(Status.SKIP, result.getThrowable().toString());
     }
 

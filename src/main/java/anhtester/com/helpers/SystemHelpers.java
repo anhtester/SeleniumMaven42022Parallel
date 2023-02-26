@@ -5,7 +5,7 @@ import java.text.Normalizer;
 import java.util.Locale;
 import java.util.regex.Pattern;
 
-public class Helpers {
+public class SystemHelpers {
 
     private static final Pattern NONLATIN = Pattern.compile("[^\\w-]");
     private static final Pattern WHITESPACE = Pattern.compile("[\\s]");

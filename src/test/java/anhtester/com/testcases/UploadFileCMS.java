@@ -1,9 +1,9 @@
 package anhtester.com.testcases;
 
 import anhtester.com.common.BaseTest;
-import anhtester.com.helpers.Helpers;
+import anhtester.com.helpers.SystemHelpers;
 import anhtester.com.pages.UploadFileCMSPage;
-import anhtester.com.utils.WebUI;
+import anhtester.com.keywords.WebUI;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
 import org.openqa.selenium.By;
@@ -19,8 +19,8 @@ public class UploadFileCMS extends BaseTest {
         WebUI.waitForPageLoaded();
         By inputFileUpload = By.xpath("//input[@name='upfile']");
 
-        //DriverManager.getDriver().findElement(inputFileUpload).sendKeys(Helpers.getCurrentDir() + "datatest/Selenium4_Upload.png");
-        WebUI.setText(inputFileUpload, Helpers.getCurrentDir() + "datatest\\Selenium4_Upload.jpg");
+        //DriverManager.getDriver().findElement(inputFileUpload).sendKeys(SystemHelpers.getCurrentDir() + "datatest/Selenium4_Upload.png");
+        WebUI.setText(inputFileUpload, SystemHelpers.getCurrentDir() + "datatest\\Selenium4_Upload.jpg");
         Thread.sleep(3000);
     }
 

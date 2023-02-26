@@ -1,7 +1,7 @@
 package anhtester.com.pages;
 
-import anhtester.com.helpers.Helpers;
-import anhtester.com.utils.WebUI;
+import anhtester.com.helpers.SystemHelpers;
+import anhtester.com.keywords.WebUI;
 import org.openqa.selenium.By;
 
 import java.awt.*;
@@ -52,7 +52,7 @@ public class UploadFileCMSPage {
             e.printStackTrace();
         }
 
-        String filePath = Helpers.getCurrentDir() + "datatest\\Selenium4_Upload.jpg";
+        String filePath = SystemHelpers.getCurrentDir() + "datatest\\Selenium4_Upload.jpg";
 
         // Copy File path vào Clipboard
         StringSelection str = new StringSelection(filePath);

@@ -2,8 +2,8 @@ package anhtester.com.testcases;
 
 import anhtester.com.common.BaseTest;
 import anhtester.com.helpers.PropertiesHelpers;
-import anhtester.com.utils.Log;
-import anhtester.com.utils.WebUI;
+import anhtester.com.utils.LogUtils;
+import anhtester.com.keywords.WebUI;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
@@ -45,7 +45,7 @@ public class CheckPaginationOnTable extends BaseTest {
         //Get item on One Page
         Select select = new Select(WebUI.getWebElement(By.xpath("//select[@name='example_length']")));
 
-        Log.info(select.getFirstSelectedOption().getText());
+        LogUtils.info(select.getFirstSelectedOption().getText());
 
         int itemTotalOnePage = Integer.parseInt(select.getFirstSelectedOption().getText());
         System.out.println("Tổng số item / trang: " + itemTotalOnePage);

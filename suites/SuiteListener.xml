@@ -2,10 +2,6 @@
 
 <suite name="Regression Test" verbose="1">
 
-    <!--    <listeners>-->
-    <!--        <listener class-name="anhtester.com.listeners.TestListener"></listener>-->
-    <!--    </listeners>-->
-
     <test name="Regression on CHROME">
         <classes>
             <class name="anhtester.com.testcases.LoginTest">

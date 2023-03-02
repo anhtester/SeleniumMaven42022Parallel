@@ -44,6 +44,7 @@ public class PropertiesHelpers {
             file = new FileInputStream(linkFile);
             properties.load(file);
             file.close();
+            System.out.println("Set Properties file: " + relPropertiesFilePath);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -57,13 +58,14 @@ public class PropertiesHelpers {
             file = new FileInputStream(linkFile);
             properties.load(file);
             file.close();
+            System.out.println("Set default Properties file: " + relPropertiesFilePathDefault);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     public static String getValue(String key) {
-        String keyval = null;
+        String value = null;
         try {
             if (file == null) {
                 properties = new Properties();
@@ -73,14 +75,14 @@ public class PropertiesHelpers {
                 file.close();
             }
             // Lấy giá trị từ file đã Set
-            keyval = properties.getProperty(key);
+            value = properties.getProperty(key);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-        return keyval;
+        return value;
     }
 
-    public static void setValue(String key, String keyValue) {
+    public static void setValue(String key, String value) {
         try {
             if (file == null) {
                 properties = new Properties();
@@ -92,9 +94,10 @@ public class PropertiesHelpers {
             //Ghi vào cùng file Prop với file lấy ra
             out = new FileOutputStream(linkFile);
             System.out.println(linkFile);
-            properties.setProperty(key, keyValue);
+            properties.setProperty(key, value);
             properties.store(out, null);
             out.close();
+            System.out.println("Set " + key + " = " + value + " to properties file successfully.");
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

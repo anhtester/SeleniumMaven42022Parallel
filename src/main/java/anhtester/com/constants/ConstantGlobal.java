@@ -21,4 +21,7 @@ public class ConstantGlobal {
     public final static String SCREENSHOT_STEP = PropertiesHelpers.getValue("SCREENSHOT_STEP");
     public final static String RECORD_VIDEO = PropertiesHelpers.getValue("RECORD_VIDEO");
     public final static String RECORD_VIDEO_PATH = PropertiesHelpers.getValue("RECORD_VIDEO_PATH");
+    public final static String EXTENT_REPORT_PATH = PropertiesHelpers.getValue("EXTENT_REPORT_PATH");
+    public final static String AUTHOR = PropertiesHelpers.getValue("AUTHOR");
+
 }

@@ -1,8 +1,8 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="Suite Parallel Project Test" verbose="1">
+<suite name="Suite Parallel Project Test" verbose="0">
 
-    <test name="Regression on CHROME" parallel="methods">
+    <test name="Regression test" parallel="methods">
         <parameter name="BROWSER" value="chrome"/>
         <classes>
             <class name="anhtester.com.testcases.ProjectTest"/>

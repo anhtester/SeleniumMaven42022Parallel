@@ -98,8 +98,17 @@ public class ExcelHelpers {
         return sheet.getPhysicalNumberOfRows();
     }
 
+    public int getColumns() {
+        try {
+            row = sheet.getRow(0);
+            return row.getLastCellNum();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            throw (e);
+        }
+    }
+    
     // Write data to excel sheet
-
     //set by column index
     public void setCellData(String text, int rowNumber, int colNumber) {
         try {
@@ -115,13 +124,16 @@ public class ExcelHelpers {
             cell.setCellValue(text);
 
             XSSFCellStyle style = (XSSFCellStyle) workbook.createCellStyle();
+
             text = text.trim().toLowerCase();
             if (text == "pass" || text == "passed") {
-                style.setFillForegroundColor(IndexedColors.BRIGHT_GREEN.getIndex());
-            }
-            if (text == "fail" || text == "passed") {
+                style.setFillForegroundColor(IndexedColors.OLIVE_GREEN.getIndex());
+            } else if (text == "fail" || text == "failed") {
                 style.setFillForegroundColor(IndexedColors.RED.getIndex());
+            } else {
+                style.setFillForegroundColor(IndexedColors.WHITE.getIndex());
             }
+
             style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
             style.setAlignment(HorizontalAlignment.CENTER);
             style.setVerticalAlignment(VerticalAlignment.CENTER);
@@ -152,9 +164,10 @@ public class ExcelHelpers {
             cell.setCellValue(text);
 
             XSSFCellStyle style = (XSSFCellStyle) workbook.createCellStyle();
+
             text = text.trim().toLowerCase();
             if (text == "pass" || text == "passed") {
-                style.setFillForegroundColor(IndexedColors.SEA_GREEN.getIndex());
+                style.setFillForegroundColor(IndexedColors.OLIVE_GREEN.getIndex());
             } else if (text == "fail" || text == "failed") {
                 style.setFillForegroundColor(IndexedColors.RED.getIndex());
             } else {
@@ -233,16 +246,6 @@ public class ExcelHelpers {
             throw new RuntimeException(e);
         }
         return data;
-    }
-
-    public int getColumns() {
-        try {
-            row = sheet.getRow(0);
-            return row.getLastCellNum();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            throw (e);
-        }
     }
 
     //Hàm này dùng cho trường hợp nhiều Field trong File Excel

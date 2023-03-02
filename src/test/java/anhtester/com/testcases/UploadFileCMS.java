@@ -9,19 +9,19 @@ import io.qameta.allure.Feature;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 
-@Epic("Regression Test")
-@Feature("Upload Test")
+@Epic("Regression test")
+@Feature("Upload File test")
 public class UploadFileCMS extends BaseTest {
 
     @Test
-    public void testUploadFileWithSendKeys() throws InterruptedException {
+    public void testUploadFileWithSendKeys() {
         WebUI.openURL("https://cgi-lib.berkeley.edu/ex/fup.html");
         WebUI.waitForPageLoaded();
         By inputFileUpload = By.xpath("//input[@name='upfile']");
 
         //DriverManager.getDriver().findElement(inputFileUpload).sendKeys(SystemHelpers.getCurrentDir() + "datatest/Selenium4_Upload.png");
         WebUI.setText(inputFileUpload, SystemHelpers.getCurrentDir() + "datatest\\Selenium4_Upload.jpg");
-        Thread.sleep(3000);
+        WebUI.sleep(3);
     }
 
     @Test

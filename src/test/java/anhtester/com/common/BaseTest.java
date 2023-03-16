@@ -21,6 +21,7 @@ public class BaseTest extends CommonPage {
     @BeforeMethod
     @Parameters({"BROWSER"})
     public static void createDriver(@Optional("chrome") String browserName) {
+        System.setProperty("webdriver.http.factory", "jdk-http-client");
         WebDriver driver = setupBrowser(browserName);
         DriverManager.setDriver(driver);
         //PropertiesHelpers.loadAllFiles();
@@ -53,6 +54,7 @@ public class BaseTest extends CommonPage {
         WebDriverManager.chromedriver().setup();
 
         ChromeOptions options = new ChromeOptions();
+        options.addArguments("--remote-allow-origins=*");
         options.setHeadless(ConstantGlobal.HEADLESS);
 
         driver = new ChromeDriver(options);
@@ -66,6 +68,7 @@ public class BaseTest extends CommonPage {
         WebDriverManager.edgedriver().setup();
 
         EdgeOptions options = new EdgeOptions();
+        options.addArguments("--remote-allow-origins=*");
         options.setHeadless(ConstantGlobal.HEADLESS);
 
         driver = new EdgeDriver(options);

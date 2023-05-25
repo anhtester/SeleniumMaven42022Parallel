@@ -55,6 +55,7 @@ public class LoginPage extends CommonPage {
         //Assert kiểm tra alert message
         boolean checkAlertError = WebUI.checkElementExist(alertMessage);
         Assert.assertTrue(checkAlertError, "Fail. Error alert not display.");
+        //Invalid Login Credentials.
         WebUI.verifyEquals(WebUI.getElementText(alertMessage), "Invalid Login Credentials.");
 
     }

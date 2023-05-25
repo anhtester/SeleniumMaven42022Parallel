@@ -54,8 +54,10 @@ public class BaseTest extends CommonPage {
         WebDriverManager.chromedriver().setup();
 
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--remote-allow-origins=*");
-        options.setHeadless(ConstantGlobal.HEADLESS);
+        if(ConstantGlobal.HEADLESS == true){
+            options.addArguments("--headless=new");
+            options.addArguments("window-size=1800,900");
+        }
 
         driver = new ChromeDriver(options);
         driver.manage().window().maximize();
@@ -68,8 +70,10 @@ public class BaseTest extends CommonPage {
         WebDriverManager.edgedriver().setup();
 
         EdgeOptions options = new EdgeOptions();
-        options.addArguments("--remote-allow-origins=*");
-        options.setHeadless(ConstantGlobal.HEADLESS);
+        if(ConstantGlobal.HEADLESS == true){
+            options.addArguments("--headless=new");
+            options.addArguments("window-size=1800,900");
+        }
 
         driver = new EdgeDriver(options);
         driver.manage().window().maximize();

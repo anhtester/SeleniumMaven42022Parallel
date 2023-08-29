@@ -20,7 +20,7 @@ public class BaseTest extends CommonPage {
 
     @BeforeMethod
     @Parameters({"BROWSER"})
-    public static void createDriver(@Optional("chrome") String browserName) {
+    public void createDriver(@Optional("chrome") String browserName) {
         System.setProperty("webdriver.http.factory", "jdk-http-client");
         WebDriver driver = setupBrowser(browserName);
         DriverManager.setDriver(driver);
@@ -28,7 +28,7 @@ public class BaseTest extends CommonPage {
     }
 
     //Viết hàm trung gian để lựa chọn Browser cần chạy với giá trị tham số "browser" bên trên truyền vào
-    public static WebDriver setupBrowser(String browserName) {
+    public WebDriver setupBrowser(String browserName) {
         WebDriver driver;
         switch (browserName.trim().toLowerCase()) {
             case "chrome":
@@ -48,10 +48,10 @@ public class BaseTest extends CommonPage {
     }
 
     // Viết các hàm khởi chạy cho từng Browser đó
-    private static WebDriver initChromeDriver() {
+    private WebDriver initChromeDriver() {
         WebDriver driver;
         System.out.println("Launching Chrome browser...");
-        WebDriverManager.chromedriver().setup();
+        //WebDriverManager.chromedriver().setup();
 
         ChromeOptions options = new ChromeOptions();
         if(ConstantGlobal.HEADLESS == true){
@@ -64,10 +64,10 @@ public class BaseTest extends CommonPage {
         return driver;
     }
 
-    private static WebDriver initEdgeDriver() {
+    private WebDriver initEdgeDriver() {
         WebDriver driver;
         System.out.println("Launching Edge browser...");
-        WebDriverManager.edgedriver().setup();
+        //WebDriverManager.edgedriver().setup();
 
         EdgeOptions options = new EdgeOptions();
         if(ConstantGlobal.HEADLESS == true){
@@ -80,10 +80,10 @@ public class BaseTest extends CommonPage {
         return driver;
     }
 
-    private static WebDriver initFirefoxDriver() {
+    private WebDriver initFirefoxDriver() {
         WebDriver driver;
         System.out.println("Launching Firefox browser...");
-        WebDriverManager.firefoxdriver().setup();
+        //WebDriverManager.firefoxdriver().setup();
 
         FirefoxOptions options = new FirefoxOptions();
         options.setHeadless(ConstantGlobal.HEADLESS);
@@ -94,7 +94,7 @@ public class BaseTest extends CommonPage {
     }
 
     @AfterMethod
-    public static void closeDriver(ITestResult result) {
+    public void closeDriver(ITestResult result) {
         if (DriverManager.getDriver() != null) {
             DriverManager.quit();
         }

@@ -38,13 +38,13 @@ public class LoginTest extends BaseTest {
 
     @Test(priority = 4)
     public void testLoginWithUsernameInValid() {
-        loginPage.loginWithUsernameInValid("admin012356", "frances.burns");
+        loginPage.loginWithUsernameInValid("admin_example_123", "123456");
 
     }
 
     @Test(priority = 5)
     public void testLoginWithPasswordInValid() {
-        loginPage.loginWithPasswordInValid("frances.burns", "123456789");
+        loginPage.loginWithPasswordInValid("admin_example", "123456789");
 
     }
 

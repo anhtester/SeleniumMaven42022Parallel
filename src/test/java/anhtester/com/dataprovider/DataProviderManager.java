@@ -8,7 +8,7 @@ public class DataProviderManager {
 
     @DataProvider(name = "data_provider_login", parallel = true)
     public Object[][] dataLoginHRM() {
-        return new Object[][]{{"frances.burns", "frances.burns"}, {"joe.larson", "joe.larson"}};
+        return new Object[][]{{"admin_example", "123456"}, {"project_manager", "123456"}};
     }
 
     @DataProvider(name = "data_provider_login_from_excel", parallel = true)

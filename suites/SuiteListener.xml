@@ -4,11 +4,6 @@
 
     <test name="Regression on CHROME">
         <classes>
-            <class name="anhtester.com.testcases.LoginTest">
-                <methods>
-                    <include name="testForgotPassword"/>
-                </methods>
-            </class>
             <class name="anhtester.com.testcases.UploadFileCMS">
                 <methods>
                     <include name="testUploadFileWithSendKeys"/>

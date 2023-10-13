@@ -45,6 +45,7 @@ public class LoginPage extends CommonPage {
 
     public void loginWithUsernameInValid(String username, String password) {
         loginNormal(username, password);
+        WebUI.waitForPageLoaded();
         //Assert kiểm tra chuyển hướng trang
         boolean checkAlertError = WebUI.checkElementExist(alertMessage);
         Assert.assertTrue(checkAlertError, "Fail. Error alert not display.");
@@ -53,6 +54,7 @@ public class LoginPage extends CommonPage {
 
     public void loginWithPasswordInValid(String username, String password) {
         loginNormal(username, password);
+        WebUI.waitForPageLoaded();
         //Assert kiểm tra alert message
         boolean checkAlertError = WebUI.checkElementExist(alertMessage);
         Assert.assertTrue(checkAlertError, "Fail. Error alert not display.");

@@ -21,10 +21,8 @@ public class BaseTest extends CommonPage {
     @BeforeMethod
     @Parameters({"BROWSER"})
     public void createDriver(@Optional("chrome") String browserName) {
-        System.setProperty("webdriver.http.factory", "jdk-http-client");
         WebDriver driver = setupBrowser(browserName);
         DriverManager.setDriver(driver);
-        //PropertiesHelpers.loadAllFiles();
     }
 
     //Viết hàm trung gian để lựa chọn Browser cần chạy với giá trị tham số "browser" bên trên truyền vào
@@ -54,7 +52,7 @@ public class BaseTest extends CommonPage {
         //WebDriverManager.chromedriver().setup();
 
         ChromeOptions options = new ChromeOptions();
-        if(ConstantGlobal.HEADLESS == true){
+        if (ConstantGlobal.HEADLESS == true) {
             options.addArguments("--headless=new");
             options.addArguments("window-size=1800,900");
         }
@@ -70,7 +68,7 @@ public class BaseTest extends CommonPage {
         //WebDriverManager.edgedriver().setup();
 
         EdgeOptions options = new EdgeOptions();
-        if(ConstantGlobal.HEADLESS == true){
+        if (ConstantGlobal.HEADLESS == true) {
             options.addArguments("--headless=new");
             options.addArguments("window-size=1800,900");
         }
@@ -86,7 +84,10 @@ public class BaseTest extends CommonPage {
         //WebDriverManager.firefoxdriver().setup();
 
         FirefoxOptions options = new FirefoxOptions();
-        options.setHeadless(ConstantGlobal.HEADLESS);
+        if (ConstantGlobal.HEADLESS == true) {
+            options.addArguments("--headless");
+            options.addArguments("window-size=1800,900");
+        }
 
         driver = new FirefoxDriver(options);
         driver.manage().window().maximize();
